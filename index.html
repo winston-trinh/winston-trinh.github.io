@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Work | Winston Trinh</title>
+    <link rel="shortcut icon" type="image/png" href="images/weblogo.png" />
+    <link rel="apple-touch-icon" type="image/png" href="images/weblogo.png" />
+    <link rel="icon" type="image/png" href="images/weblogo.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <style>
+        .overlay {
+            height: 0%;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #FFFFFFFA;
+            /* background-color: #000000ca; */
+            overflow-y: hidden;
+            transition: 0.4s;
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .overlay a {
+            padding: 4%;
+            text-decoration: none;
+            font-size: 42px;
+            color: #aeadad;
+            display: block;
+            transition: 0.5s;
+        }
+        #activeLink {
+            padding: 4%;
+            text-decoration: none;
+            font-size: 42px;
+            color: black;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .overlay a:hover, .overlay a:focus {
+            color: black;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 0.01vh;
+            right: 0.5vw;
+            font-size: 80px;
+        }
+
+        @media screen and (max-height: 420px) {
+            .overlay { overflow-y: auto; }
+            .overlay a {
+                font-size: 30px;
+                padding: 2%;
+            }
+            .overlay .closebtn {
+                font-size: 60px;
+            }
+        }
+        @media screen and (max-height: 280px) {
+            .overlay { overflow-y: auto; }
+            .overlay a {
+                font-size: 25px;
+                padding: 0.75%;
+            }
+            .overlay .closebtn {
+                font-size: 50px;
+            }
+        }
+        #navbarNav {
+            text-align: end;
+        }
+        .navbar .navbar-nav .nav-link {
+            padding-right: 2em;
+        }
+        .container .navbar-toggler {
+            border: none;
+            padding: 0;
+            margin-top: 3%;
+            margin-right: 3%;
+            z-index: 1;
+        }
+        .row .intro {
+            padding-left: 0%;
+        }
+        .row {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .h3 .underline {
+            display: block;
+            content: '';
+            margin-top: 15px;
+            height: 5px;
+            width: 8%;
+            background-color: #1d97d8;
+            position: absolute;
+            left: 0;
+        }
+
+        .item-box {
+            border: 2px solid #000; /* Set border color */
+            border-radius: 10px; /* Set border-radius for rounded corners */
+            padding: 5px; /* Add padding for better appearance */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition effects for hover */
+            cursor: pointer; /* Change cursor on hover */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 47.5%;
+            height: 250px;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .item-box:hover {
+            transform: scale(1.05);
+        }
+
+        .contentBox {
+            display: none;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.862);
+            padding: 10px; /* Adjust padding as needed */
+            text-align: center;
+        }
+
+        #zetas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.758);
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .container {
+            width: 100%;
+        }
+        #enterBody {
+            margin-bottom: 75px;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <a class="navbar-brand" href="#"></a>
+            <button
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                class="navbar-toggler"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation."
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+                class="collapse navbar-collapse"
+                id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <p class="h5">
+                            <a href="#" class="nav-link active">
+                                Work
+                            </a>
+                        </p>
+                    </li>
+                    <li class="nav-item">
+                        <p class="h5">
+                            <a href="about.html" class="nav-link">
+                                About
+                            </a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" onpointerenter="hovClose()" onpointerleave="exitClose()">&times;</a>
+            <div class="overlay-content">
+                <!--<a id="activeLink" style="color: black" href="#">Portfolio</a>-->
+                <a id="activeLink" href="#">Work</a>
+                <a id="otherLink" href="about.html" onpointerenter="hovLink()" onpointerleave="exitLink()">About</a>
+            </div>
+        </div>
+        <span
+            id="menu"
+            style="font-size:30px;
+                    margin-left: 96%;
+                    cursor:pointer"
+                    onclick="openNav()">&#9776;
+        </span>
+        <div class="row">
+            <div class="intro">
+                <p class="h4">Hey!</p>
+                <h1 class="display-1">
+                    <strong>
+                        I'm Winston<span style="color: #1d97d8;">.</span>
+                    </strong>
+                </h1>
+                <div id="enterBody">
+                    <p class="h4">
+                        Student at <span style="color: #1d97d8;">USC</span> studying <span style="color: #1d97d8;">computer science</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <p class="h3" style="position: relative; padding: 0%;"><b>
+                Experience</b>
+                <span class="underline"></span>
+            </p>
+        </div>
+        <div class="row">
+            <p style="margin-top: 4%;"> </p>
+        </div>
+        <div class="row">
+            <div class="item-box first" style="background-image: url('images/cs_sc.png');">
+                <a class="itemLink" href="https://summercamp.usc.edu" target="_blank" style="color: white;">
+                    <div class="contentBox">
+                        <h2>USC Viterbi</h2>
+                        <p><i>June 2022 - Present</i></p>
+                        <h4>CS@SC Teaching Assistant</h4>
+                        <p class="itemDescription">Lead weekly classes of up to 15 students spanning K-12th grade, 
+                            teaching various computer science topics ranging from Scratch to Java/Python</p>
+                    </div>
+                </a>
+            </div>
+            <div id="margin" style="width: 5%;"></div>
+            <div class="item-box" style="margin-top: 5%; background-image: url('images/zetas.png');">
+                <div id="zetas">
+                    <div class="contentBox">
+                        <h2>Zeta Phi Rho</h2>
+                        <p><i>January 2023 - Present</i></p>
+                        <h4>Rush Chair</h4>
+                        <p class="itemDescription">Coordinate recruitment activities for over 100 prospective
+                             members, conduct interviews with 15 candidates, and ensure active member participation is at least 85%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <p style="margin-top: 2%;"> </p>
+        </div>
+        <div class="row">
+            <p class="h3" style="position: relative; padding: 0%; margin-top: 6%;"><b>
+                Projects</b>
+                <span class="underline"></span>
+            </p>
+        </div>
+        <div class="row">
+            <p style="margin-top: 4%;"> </p>
+        </div>
+        <div class="row">
+            <div class="item-box first" style="background-image: url('images/skategram.png');">
+                <div class="contentBox">
+                    <h2>SkateSafe</h2>
+                    <p><i>April 2023 - Present</i></p>
+                    <h4>Swift, Firebase BaaS, Figma</h4>
+                    <p class="itemDescription" id="skateSafeDesc">Independently developed an iOS application mirroring key functionalities of Waze
+                         for skateboarders/cyclists/pedestrians to report hazards using Firebase BaaS and iOS SDK (CoreLocation, MapKit, PhotoKit)</p>
+                </div>
+            </div>
+            <div id="margin" style="width: 5%;"></div>
+            <div class="item-box" style="margin-top: 5%; background-image: url('images/joestable.png');">
+                <a class="itemLink" href="https://github.com/winston-trinh/joestable" target="_blank" style="color: white;">
+                    <div class="contentBox">
+                        <h2>JoesTable</h2>
+                        <p><i>November 2023</i></p>
+                        <h4>Java, HTML/CSS, JavaScript, MySQL</h4>
+                        <p class="itemDescription" id="yelpDesc">Coded an interactive web application with Yelp API for dynamic restaurant search and management, enabling 
+                            users to find restaurants, add favorites, and schedule reservations</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="item-box first" style="background-image: url('images/cache_sim.png');">
+                <a class="itemLink" href="https://github.com/winston-trinh/cachesim" target="_blank" style="color: white;">
+                    <div class="contentBox">
+                        <h2>Cache Simulator</h2>
+                        <p><i>November 2023</i></p>
+                        <h4>C</h4>
+                        <p class="itemDescription" id="skateSafeDesc">Designed a cache memory simulation program in C and tested under various cache architectures,
+                            handling test traces with over 267,900 lines</p>
+                    </div>
+                </a>
+            </div>
+            <div id="margin" style="width: 5%;"></div>
+            <div class="item-box" style="margin-top: 5%; background-image: url('images/traveling_trojan.png');">
+                <a class="itemLink" href="https://github.com/winston-trinh/traveling-trojan" target="_blank" style="color: white;">
+                    <div class="contentBox">
+                        <h2>Traveling Trojan</h2>
+                        <p><i>October 2023</i></p>
+                        <h4>C++</h4>
+                        <p class="itemDescription" id="trojan">Developed a Genetic Algorithm-based path optimization project with functional programming. Implemented
+                            selection, crossover, and mutation functionality, resulting in up to 5% path optimization between generations</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="item-box first" style="background-image: url('images/trie.png');">
+                <div class="contentBox">
+                    <h2>Autocomplete</h2>
+                    <p><i>October 2023</i></p>
+                    <h4>C++</h4>
+                    <p class="itemDescription">Designed a Trie data structure to efficiently store and manage
+                         data for autocomplete functionality of 370,105+ English words</p>
+                </div>
+            </div>
+            <div id="margin" style="width: 5%;"></div>
+            <div class="item-box" style="margin-top: 5%; background-image: url('images/sandlines.png');">
+                <a class="itemLink" href="https://sandlines.app" target="_blank" style="color: white;">
+                    <div class="contentBox">
+                        <h2>Sandlines</h2>
+                        <p><i>August 2023</i></p>
+                        <h4>React.js, Firebase BaaS, Figma</h4>
+                        <p class="itemDescription" id="sandlinesDesc">Developed admin dashboard web app. Collaborated closely with two other developers to ensure
+                             seamless synchronization between web app and the Sandlines mobile app, guaranteeing right data is updated and accessible in real-time</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10%;"> </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        // Automatically resizes the width of parent container
+        var w = document.documentElement.clientWidth;
+        var light = true;
+        
+        function hovLink() {
+            // Have an if condition tracking if it is currently light/dark mode
+            if (!light) {
+                document.getElementById("otherLink").style.color = "white";
+            } else {
+                document.getElementById("otherLink").style.color = "black";
+            }
+        }
+        function exitLink() {
+            document.getElementById("otherLink").style.color = "#818181";
+        }
+
+        function hovClose() {
+            if (!light) {
+                document.querySelector(".closebtn").style.color = "white";
+            } else {
+                document.querySelector(".closebtn").style.color = "black";
+            }
+        }
+        function exitClose() {
+            document.querySelector(".closebtn").style.color = "#818181";
+        }
+
+        var itemBoxes = document.querySelectorAll('.item-box');
+        var itemDescriptions = document.querySelectorAll('.itemDescription');
+        var itemLinks = document.querySelectorAll('.itemLink');
+        itemBoxes.forEach(function(itemBox) {
+            itemBox.style.transition = "background-color 0.3s ease, transform 0.3s ease"; // Add transition effect
+            var contentBox = itemBox.querySelector('.contentBox');
+
+            itemBox.addEventListener("mouseenter", function() {
+                itemBox.style.transform = "scale(1.05)"; // Scale the box on hover
+                // itemBox.style.backgroundColor = light ? "rgba(0, 0, 0, 0.8)" : "rgba(255, 255, 255, 0.8)"; // Slightly opaque background on hover
+                itemBox.style.color = light ? "white" : "black"; // Toggle text color based on light mode
+                contentBox.style.display = "block"; // Show contentBox
+                if (light) {
+                    contentBox.style.backgroundColor = "rgba(0, 0, 0, 0.72)"
+                } else { contentBox.style.backgroundColor = "rgba(255, 255, 255, 0.862)"; }
+            });
+
+            itemBox.addEventListener("mouseleave", function() {
+                itemBox.style.transform = "scale(1)"; // Reset the scale
+                itemBox.style.color = light ? "black" : "white"; // Toggle text color based on light mode
+                itemBox.style.backgroundColor = "transparent"; // Reset background color to transparent
+                contentBox.style.display = "none"; // Hide contentBox
+            });
+        });
+
+        function resizeBoxes() {
+            var itemBoxes = document.querySelectorAll('.item-box');
+            var itemBoxFirst = document.querySelectorAll('.item-box.first');
+
+            if (w <= 768) {
+                // Loop through each item-box element
+                itemBoxes.forEach(function(itemBox) {
+                    itemBox.style.width = "100%";
+                });
+
+                itemBoxFirst.forEach(function(itemBox) {
+                    itemBox.style.marginTop = "5%";
+                });
+                document.getElementById("margin").hidden = true;
+            } else {
+                // Loop through each item-box element
+                itemBoxes.forEach(function(itemBox) {
+                    itemBox.style.width = "47.5%";
+                });
+
+                itemBoxFirst.forEach(function(itemBox) {
+                    itemBox.style.marginTop = "0%";
+                });
+                document.getElementById("margin").hidden = false;
+            }
+        }
+
+        resizeBoxes();
+
+        function adjustText() {
+            if (w >= 576) {
+                // document.querySelector(".overlay").hidden = true;
+                document.querySelector(".navbar").hidden = false;
+                document.getElementById("menu").hidden = true;
+            }
+            if (w < 576) {
+                document.querySelector(".container").style.width = "100%";
+                // document.querySelector(".overlay").hidden = false;
+                document.querySelector(".navbar").hidden = true;
+                document.getElementById("menu").hidden = false;
+                document.getElementById("skateSafeDesc").style.fontSize = "10pt";
+                document.getElementById("trojan").style.fontSize = "10pt";
+                document.getElementById("yelpDesc").style.fontSize = "10pt";
+                document.getElementById("sandlinesDesc").style.fontSize = "10pt";
+            }
+            else if (w < 768) {
+                document.querySelector(".container").style.width = "95%";
+                document.getElementById("trojan").style.fontSize = "9pt";
+                document.getElementById("yelpDesc").style.fontSize = "8pt";
+                document.getElementById("skateSafeDesc").style.fontSize = "9pt";
+                document.getElementById("sandlinesDesc").style.fontSize = "9pt";
+            }
+            else if (w < 992) {
+                document.querySelector(".container").style.width = "85%";
+                document.getElementById("trojan").style.fontSize = "9pt";
+                document.getElementById("yelpDesc").style.fontSize = "8pt";
+                document.getElementById("skateSafeDesc").style.fontSize = "9pt";
+                document.getElementById("sandlinesDesc").style.fontSize = "9pt";
+            }
+            else if (w < 1200) {
+                document.querySelector(".container").style.width = "68%";
+                itemDescriptions.forEach(function(itemDescription) {
+                    itemDescription.style.fontSize = "12pt";
+                });
+                document.getElementById("skateSafeDesc").style.fontSize = "9pt";
+                document.getElementById("trojan").style.fontSize = "9pt";
+                document.getElementById("yelpDesc").style.fontSize = "8pt";
+                document.getElementById("sandlinesDesc").style.fontSize = "9pt";
+            }
+            else {
+                itemDescriptions.forEach(function(itemDescription) {
+                    itemDescription.style.fontSize = "11pt";
+                });
+                document.querySelector(".container").style.width = "53%";
+                document.getElementById("skateSafeDesc").style.fontSize = "9pt";
+                document.getElementById("trojan").style.fontSize = "9pt";
+                document.getElementById("yelpDesc").style.fontSize = "10pt";
+                document.getElementById("sandlinesDesc").style.fontSize = "9pt";
+            }
+        }
+        window.addEventListener("resize", function() {
+            w = document.documentElement.clientWidth;
+            resizeBoxes();
+            adjustText();
+        });
+        function openNav() {
+            document.getElementById("myNav").style.height = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.height = "0%";
+        }
+        
+        // Code for dark mode if user presses anywhere on the page
+        document.addEventListener("DOMContentLoaded", function() {
+            // Light or dark mode based on system settings
+            updateColors();
+            adjustText();
+        });
+        
+        window.matchMedia('(prefers-color-scheme: light)')
+            .addEventListener('change',({ matches }) => {
+            // Light or dark mode based on system settings
+            updateColors();
+        });
+
+        function updateColors() {
+            light = window.matchMedia("(prefers-color-scheme:light)").matches;
+            // Dark mode
+            if (!light) {
+                document.querySelector("body").style.backgroundColor = "#1F1F1F";
+                document.querySelector("body").style.color = "white";
+                document.querySelector(".navbar.navbar-expand-sm.navbar-light").classList.replace("navbar-light", "navbar-dark");
+                document.querySelector(".overlay").style.backgroundColor = "#000000E6";
+                document.getElementById("activeLink").style.color = "white";
+                document.getElementById("zetas").style.backgroundColor = "rgba(0, 0, 0, 0.758)";
+                itemBoxes.forEach(function(itemBox) {
+                    itemBox.style.border = "2px solid #fff";
+                });
+                itemLinks.forEach(function(itemLink) {
+                    itemLink.style.color = "black";
+                });
+            }
+            else { // Light mode
+                document.querySelector("body").style.backgroundColor = "white";
+                document.querySelector("body").style.color = "black";
+                try {
+                    document.querySelector(".navbar.navbar-expand-sm.navbar-dark").classList.replace("navbar-dark", "navbar-light");
+                } catch {}
+                document.querySelector(".overlay").style.backgroundColor = "#FFFFFFFA";
+                document.getElementById("activeLink").style.color = "black";
+                document.getElementById("zetas").style.backgroundColor = "rgba(255, 255, 255, 0.758)";
+                itemBoxes.forEach(function(itemBox) {
+                    itemBox.style.border = "2px solid #000";
+                });
+                itemLinks.forEach(function(itemLink) {
+                    itemLink.style.color = "white";
+                });
+            }
+        }
+
+    </script>
+</body>
+</html>
