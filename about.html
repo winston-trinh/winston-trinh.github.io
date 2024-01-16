@@ -295,29 +295,6 @@
             document.querySelector(".container").style.width = "53%";
         }
 
-        var icons = document.getElementById("icons");
-        icons.forEach(function(icon) {
-            icon.style.transition = "background-color 0.3s ease, transform 0.3s ease"; // Add transition effect
-            var contentBox = itemBox.querySelector('.contentBox');
-
-            itemBox.addEventListener("mouseenter", function() {
-                itemBox.style.transform = "scale(1.05)"; // Scale the box on hover
-                // itemBox.style.backgroundColor = light ? "rgba(0, 0, 0, 0.8)" : "rgba(255, 255, 255, 0.8)"; // Slightly opaque background on hover
-                itemBox.style.color = light ? "white" : "black"; // Toggle text color based on light mode
-                contentBox.style.display = "block"; // Show contentBox
-                if (light) {
-                    contentBox.style.backgroundColor = "rgba(0, 0, 0, 0.72)"
-                } else { contentBox.style.backgroundColor = "rgba(255, 255, 255, 0.862)"; }
-            });
-
-            itemBox.addEventListener("mouseleave", function() {
-                itemBox.style.transform = "scale(1)"; // Reset the scale
-                itemBox.style.color = light ? "black" : "white"; // Toggle text color based on light mode
-                itemBox.style.backgroundColor = "transparent"; // Reset background color to transparent
-                contentBox.style.display = "none"; // Hide contentBox
-            });
-        });
-
         window.addEventListener("resize", function() {
             w = document.documentElement.clientWidth;
             if (w >= 576) {
