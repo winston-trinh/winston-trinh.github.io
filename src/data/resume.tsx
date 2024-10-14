@@ -182,6 +182,10 @@ export const DATA = {
           href: "https://github.com/winston-trinh/traveling-trojan",
           icon: <Icons.github className="size-3" />,
         },
+        //   type: "Website",
+        //   href: "https://automatic.chat",
+        //   icon: <Icons.globe className="size-3" />,
+        // },
       ],
       image: "/traveling_trojan.png",
       video: "",
@@ -223,32 +227,6 @@ export const DATA = {
       image: "/skatesafe.png",
       video: "",
     },
-    // {
-    //   title: "Automatic Chat",
-    //   href: "https://automatic.chat",
-    //   dates: "April 2023 - March 2024",
-    //   active: true,
-    //   description:
-    //     "Developed an AI Customer Support Chatbot which automatically responds to customer support tickets using the latest GPT models.",
-    //   technologies: [
-    //     "Next.js",
-    //     "Typescript",
-    //     "PostgreSQL",
-    //     "Prisma",
-    //     "TailwindCSS",
-    //     "Stripe",
-    //   ],
-    //   links: [
-    //     {
-    //       type: "Website",
-    //       href: "https://automatic.chat",
-    //       icon: <Icons.globe className="size-3" />,
-    //     },
-    //   ],
-    //   image: "",
-    //   video:
-    //     "#https://pub-83c5db439b40468498f97946200806f7.r2.dev/automatic-chat.mp4",
-    // },
   ],
   hackathons: [
     {
