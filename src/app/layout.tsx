@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
   title: {
     default: "Winston Trinh | CS @ USC",
+    template: "%s | Winston Trinh | CS @ USC",
   },
   description: DATA.description,
   icons: {
