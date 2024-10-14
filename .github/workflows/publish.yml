@@ -30,7 +30,7 @@ jobs:
           static_site_generator: next
 
       - name: Build with Next.js 🏗️
-        run: npx next build
+        run: npx next build --verbose
 
       - name: List list all directories 📁
         run: ls -la
