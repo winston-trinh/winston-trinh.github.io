@@ -14,7 +14,6 @@ export const DATA = {
     "I was born and raised in [Portland, OR](https://www.google.com/maps/place/portland). I currently live in Los Angeles studying [computer science at the University of Southern California](/#education).",
     "My work-study job is to work as a [TA for CS@SC](/#work) and I'm also a [research assistant for Professor Duquette](/#work). I love using technology to come up with creative solutions that can make a real difference in people’s lives—whether it’s through teaching others or personal projects. On the side, I like playing basketball, weightlifting, and trying new food."
   ],
-    // "At the end of 2022, I quit my job as a software engineer to go fulltime into building and scaling my own SaaS businesses. In the past, [I pursued a double degree in computer science and business](/#education), [interned at big tech companies in Silicon Valley](https://www.youtube.com/watch?v=d-LJ2e5qKdE), and [competed in over 21 hackathons for fun](/#hackathons). I also had the pleasure of being a part of the first ever in-person cohort of buildspace called [buildspace sf1](https://buildspace.so/sf1).",
   avatarUrl: "/me.jpeg",
   skills: [
     "C/C++",
