@@ -5,20 +5,27 @@ import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
+import { Project } from "@/components/project-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
+import React from 'react';
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const smoothScroll = (targetElement, duration) => {
+interface LinkRendererProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  href?: string;
+  children?: React.ReactNode;
+}
+
+const smoothScroll = (targetElement: Element, duration: number) => {
   const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
   const startPosition = window.scrollY;
   const distance = targetPosition - startPosition;
-  let startTime = null;
+  let startTime: number | null = null;
 
-  const animation = (currentTime) => {
+  const animation = (currentTime: number) => {
     if (startTime === null) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
@@ -32,7 +39,7 @@ const smoothScroll = (targetElement, duration) => {
   requestAnimationFrame(animation);
 };
 
-const easeInOutCubic = (t, b, c, d) => {
+const easeInOutCubic = (t: number, b: number, c: number, d: number) => {
   t /= d / 2;
   if (t < 1) return (c / 2) * t * t * t + b;
   t -= 2;
@@ -41,32 +48,34 @@ const easeInOutCubic = (t, b, c, d) => {
 
 
 // Custom LinkRenderer to make links open in a new tab
-const LinkRenderer = (props) => {
-  const isInternalLink = props.href.startsWith("/") || props.href.startsWith("#");
+const LinkRenderer = (props: LinkRendererProps) => {
+  const { href = '', children, ...rest } = props;
+  const isInternalLink = href.startsWith("/") || href.startsWith("#");
 
-  const handleClick = (e) => {
-    if (props.href.startsWith("#")) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href.startsWith("#")) {
       e.preventDefault(); // Prevent default link behavior
 
       // Smooth scroll to the element with the corresponding ID
-      const targetElement = document.querySelector(props.href);
+      const targetElement = document.querySelector(href);
       if (targetElement) {
         smoothScroll(targetElement, 1500);
         
         // Update the URL hash
-        window.location.hash = props.href;
+        window.location.hash = href;
       }
     }
   };
 
   return (
     <a
-      href={props.href}
-      onClick={isInternalLink && props.href.startsWith("#") ? handleClick : undefined}
+      href={href}
+      onClick={isInternalLink && href.startsWith("#") ? handleClick : undefined}
       target={isInternalLink ? "_self" : "_blank"}
       rel={isInternalLink ? "" : "noopener noreferrer"}
+      {...rest}
     >
-      {props.children}
+      {children}
     </a>
   );
 };
@@ -78,7 +87,7 @@ const Summary = () => {
           key={index}
           remarkPlugins={[remarkGfm]} // Supports GitHub Flavored Markdown (GFM)
           components={{
-            a: LinkRenderer, // Custom link handler
+            a: LinkRenderer,
           }}
         >
           {paragraph}
@@ -91,7 +100,7 @@ const Summary = () => {
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
-  const handleArrowClickToEducation = (e) => {
+  const handleArrowClickToEducation = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     const targetElement = document.querySelector('#education');
     if (targetElement) {
@@ -99,7 +108,7 @@ export default function Page() {
     }
   };
 
-  const handleArrowClickToProjects = (e) => {
+  const handleArrowClickToProjects = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     const targetElement = document.querySelector('#projects');
     if (targetElement) {
@@ -294,7 +303,7 @@ export default function Page() {
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects.map((project, id) => (
+            {DATA.projects.map((project: Project, id) => (
               <BlurFade
                 key={project.title}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
@@ -305,7 +314,7 @@ export default function Page() {
                   title={project.title}
                   description={project.description}
                   dates={project.dates}
-                  tags={project.technologies}
+                  technologies={project.technologies}
                   image={project.image}
                   video={project.video}
                   links={project.links}

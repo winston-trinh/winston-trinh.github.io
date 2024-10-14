@@ -23,7 +23,6 @@ export async function markdownToHTML(markdown: string) {
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypePrettyCode, {
-      // https://rehype-pretty.pages.dev/#usage
       theme: {
         light: "min-light",
         dark: "min-dark",
@@ -37,32 +36,44 @@ export async function markdownToHTML(markdown: string) {
 }
 
 export async function getPost(slug: string) {
-  const filePath = path.join("content", `${slug}.mdx`);
-  let source = fs.readFileSync(filePath, "utf-8");
+  const filePath = path.join(process.cwd(), "content", `${slug}.mdx`);
+
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
+  const source = fs.readFileSync(filePath, "utf-8");
   const { content: rawContent, data: metadata } = matter(source);
   const content = await markdownToHTML(rawContent);
+
   return {
     source: content,
-    metadata,
+    metadata: metadata as Metadata,
     slug,
   };
 }
 
-async function getAllPosts(dir: string) {
-  let mdxFiles = getMDXFiles(dir);
-  return Promise.all(
+// Add and export the getAllPosts function
+export async function getAllPosts() {
+  const dir = path.join(process.cwd(), "content");
+  const mdxFiles = getMDXFiles(dir);
+
+  const posts = await Promise.all(
     mdxFiles.map(async (file) => {
-      let slug = path.basename(file, path.extname(file));
-      let { metadata, source } = await getPost(slug);
-      return {
-        metadata,
-        slug,
-        source,
-      };
+      const slug = path.basename(file, path.extname(file));
+      const post = await getPost(slug);
+      return post;
     })
   );
+
+  // Filter out any null posts (in case getPost returns null)
+  return posts.filter((post) => post !== null) as {
+    source: string;
+    metadata: Metadata;
+    slug: string;
+  }[];
 }
 
 export async function getBlogPosts() {
-  return getAllPosts(path.join(process.cwd(), "content"));
+  return getAllPosts();
 }
