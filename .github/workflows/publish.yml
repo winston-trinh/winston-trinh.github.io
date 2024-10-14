@@ -32,6 +32,12 @@ jobs:
       - name: Build with Next.js 🏗️
         run: npx next build
 
+      - name: List list all directories 📁
+        run: ls
+
+      - name: List .next directory 📁
+        run: ls -la .next
+
       - name: List output directory 📁
         run: ls -la out
 
