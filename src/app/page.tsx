@@ -192,7 +192,7 @@ export default function Page() {
 	        </BlurFade>
         </div>
       </section>
-      <section id="education" className="flex flex-col min-h-screen">
+      <section id="education" className="flex flex-col min-h-screen pt-16">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">Education</h2>
@@ -224,7 +224,7 @@ export default function Page() {
             </BlurFade>
           ))}
         </div>
-        <section id="work" className="mt-12">
+        <section id="work" className="pt-12">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 5}>
               <h2 className="text-xl font-bold">Work Experience</h2>

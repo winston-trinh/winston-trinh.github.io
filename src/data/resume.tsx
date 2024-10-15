@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons";
 import { url } from "inspector";
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, NotebookIcon } from "lucide-react";
 
 export const DATA = {
   name: "Winston Trinh",
@@ -39,12 +39,13 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "./blog", icon: NotebookIcon, label: "Blog" },
   ],
   contact: {
     email: "mailto:wntrinh@usc.edu",
     tel: "+1 (971) 727-5784",
     social: {
-      email: {
+      Email: {
         name: "Send Email",
         url: "mailto:wntrinh@usc.edu",
         icon: Icons.email,
@@ -62,6 +63,13 @@ export const DATA = {
         name: "LinkedIn",
         url: "https://www.linkedin.com/in/winstontrinh/",
         icon: Icons.linkedin,
+
+        navbar: true,
+      },
+      Resume: {
+	      name: "Resume",
+        url: "./resume_winston_trinh.pdf",
+        icon: Icons.resume,
 
         navbar: true,
       },

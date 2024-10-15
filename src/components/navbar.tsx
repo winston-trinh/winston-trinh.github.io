@@ -27,16 +27,40 @@ export default function Navbar() {
           <DockIcon key={item.href}>
             <Tooltip>
               <TooltipTrigger asChild>
-                {item.label === 'Home' ? (
-                  <button
-                    onClick={scrollToTop}
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12"
-                    )}
-                  >
-                    <item.icon className="size-4" />
-                  </button>
+                {['Home', 'Blog'].includes(item.label) ? (
+                  item.label === 'Home' ? (
+                    <button
+                      onClick={() => {
+                        if (window.location.pathname === '/') {
+                          scrollToTop(); // Scroll if already on the home page
+                        } else {
+                          window.location.href = '/'; // Redirect to home page
+                        }
+                      }}
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "icon" }),
+                        "size-12"
+                      )}
+                    >
+                      <item.icon className="size-4" />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        if (window.location.pathname === '/blog') {
+                          scrollToTop(); // Scroll if already on the home page
+                        } else {
+                          window.location.href = '/blog'; // Redirect to home page
+                        }
+                      }}
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "icon" }),
+                        "size-12"
+                      )}
+                    >
+                      <item.icon className="size-4" />
+                    </button>
+                  )
                 ) : (
                   <Link
                     href={item.href}
