@@ -14,7 +14,7 @@ export const DATA = {
     "I was born and raised in [Portland, OR](https://www.google.com/maps/place/portland). I currently live in Los Angeles studying [computer science at the University of Southern California](/#education).",
     "My work-study job is to work as a [TA for CS@SC](/#work) and I'm also a [research assistant for Professor Duquette](/#work). I love using technology to come up with creative solutions that can make a real difference in people’s lives—whether it’s through teaching others or personal projects. On the side, I like playing basketball, weightlifting, and trying new food."
   ],
-  avatarUrl: "/me.jpeg",
+  avatarUrl: "./me.jpeg",
   skills: [
     "C/C++",
     "Java",
@@ -75,7 +75,7 @@ export const DATA = {
       badges: [],
       location: "Los Angeles, CA",
       title: "Research Assistant",
-      logoUrl: "/price.jpeg",
+      logoUrl: "./price.jpeg",
       start: "July 2024",
       end: "Present",
       description: [
@@ -88,7 +88,7 @@ export const DATA = {
       badges: [],
       location: "Remote",
       title: "Software Engineer Intern",
-      logoUrl: "/sandlines.png",
+      logoUrl: "./sandlines.png",
       start: "August 2023",
       end: "July 2024",
       description: [
@@ -103,7 +103,7 @@ export const DATA = {
       badges: [],
       location: "Los Angeles, CA",
       title: "Teaching Assistant for CS@SC",
-      logoUrl: "/usc.jpeg",
+      logoUrl: "./usc.jpeg",
       start: "June 2022",
       end: "July 2024",
       description: [
@@ -118,7 +118,7 @@ export const DATA = {
       badges: [],
       location: "Forest Grove, OR",
       title: "Research Intern",
-      logoUrl: "/nih.jpeg",
+      logoUrl: "./nih.jpeg",
       start: "May 2019",
       end: "August 2021",
       description: [
@@ -131,7 +131,7 @@ export const DATA = {
       school: "University of Southern California",
       href: "https://www.usc.edu",
       degree: "Bachelor's of Science - Computer Science",
-      logoUrl: "/usc.jpeg",
+      logoUrl: "./usc.jpeg",
       start: " ",
       end: "Expected Dec 2024",
       description: [
@@ -162,7 +162,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/joestable.png",
+      image: "./joestable.png",
       video: "",
     },
     {
@@ -186,7 +186,7 @@ export const DATA = {
         //   icon: <Icons.globe className="size-3" />,
         // },
       ],
-      image: "/traveling_trojan.png",
+      image: "./traveling_trojan.png",
       video: "",
     },
     {
@@ -208,7 +208,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/cache_sim.png",
+      image: "./cache_sim.png",
       video: "",
     },
     {
@@ -223,7 +223,7 @@ export const DATA = {
         "Firebase BaaS",
         "Figma",
       ],
-      image: "/skatesafe.png",
+      image: "./skatesafe.png",
       video: "",
     },
   ],
