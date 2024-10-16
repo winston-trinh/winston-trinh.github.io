@@ -166,7 +166,7 @@ export default function Page() {
             </BlurFade>
           </div>
           <BlurFade delay={BLUR_FADE_DELAY * 10}>
-            <div className="flex justify-center mt-24 sm:mt-24 md:mt-2">
+            <div className="hidden md:flex justify-center mt-24 sm:mt-24 md:mt-2">
               <div
                 onClick={handleArrowClickToEducation}
                 className="cursor-pointer text-muted-foreground hover:text-primary transition duration-200"
@@ -258,7 +258,7 @@ export default function Page() {
           </div>
         </section>
         <BlurFade delay={BLUR_FADE_DELAY * 10}>
-          <div className="flex justify-center sm:mt-6 md:mt-8">
+          <div className="hidden md:flex justify-center mt-6 sm:mt-6 md:mt-8">
             <div
               onClick={handleArrowClickToProjects}
               className="cursor-pointer text-muted-foreground hover:text-primary transition duration-200"
