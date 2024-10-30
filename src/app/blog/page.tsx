@@ -1,5 +1,5 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import { formatDate } from "@/lib/utils";
+import { RelativeDate } from "@/lib/format/date";
 import { getBlogPosts } from "@/data/blog";
 import Link from "next/link";
 
@@ -36,7 +36,7 @@ export default async function BlogPage() {
               <div className="w-full flex flex-col">
                 <p className="text-base sm:text-xl tracking-tight">{post.metadata.title}</p>
                 <p className="h-6 text-xs text-muted-foreground">
-                  {formatDate(post.metadata.publishedAt)}
+                  <RelativeDate date={post.metadata.publishedAt} />
                 </p>
               </div>
             </Link>

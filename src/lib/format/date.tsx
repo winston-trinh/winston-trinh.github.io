@@ -1,17 +1,28 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+"use client";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+import { useEffect, useState } from 'react';
+
+interface RelativeDateProps {
+    date: string;
+  }
+  
+  export function RelativeDate({ date }: RelativeDateProps) {
+    const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    setCurrentDate(new Date());
+  }, []);
+
+  return (
+    <span>
+      {formatDate(date, currentDate)}
+    </span>
+  );
 }
 
-export function formatDate(date: string) {
-  let currentDate = new Date().getTime();
-  if (!date.includes("T")) {
-    date = `${date}T00:00:00`;
-  }
+function formatDate(date: string, currentDate: Date) {
   let targetDate = new Date(date).getTime();
-  let timeDifference = Math.abs(currentDate - targetDate);
+  let timeDifference = Math.abs(currentDate.getTime() - targetDate);
   let daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   let fullDate = new Date(date).toLocaleString("en-us", {
