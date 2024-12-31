@@ -5,7 +5,7 @@ import { HomeIcon, NotebookIcon } from "lucide-react";
 export const DATA = {
   name: "Winston Trinh",
   initials: "WT",
-  url: "https://winston-trinh.github.io/index.html",
+  url: "https://winstontrinh.com",
   location: "Los Angeles, CA",
   locationLink: "https://www.google.com/maps/place/losangeles",
   description:
@@ -27,7 +27,9 @@ export const DATA = {
     "Flask",
     "Git",
     "Docker",
+    "Github Actions",
     "Linux",
+    "Jira",
     "AWS EC2",
     "scikit-learn",
     "SQL",
@@ -85,7 +87,7 @@ export const DATA = {
       title: "Research Assistant",
       logoUrl: "./price.jpeg",
       start: "July 2024",
-      end: "Present",
+      end: "December 2024",
       description: [
         "•	Processed and analyzed large-scale datasets exceeding 100 GB using Python and Polars to reduce data processing time.",
         "•	Developed and implemented predictive models using scikit-learn and linearmodels to support nonprofit budget forecasting analysis."
@@ -117,7 +119,7 @@ export const DATA = {
       description: [
         "•	Lead weekly classes of up to 15 students spanning K-12th grade, teaching various computer science topics ranging from Scratch to Java/Python.",
         "•	Design lesson plans for 200+ students with interactive programming problems and homework to support practical learning.",
-        "•	Advise in development of Game Design using Unity and Level 1 Python by recording 3 educational videos."
+        "•	Advise in development of Game Design using Unity with C# and Level 1 Python by recording 3 educational videos."
 
     ]},
     {
@@ -141,7 +143,7 @@ export const DATA = {
       degree: "Bachelor's of Science - Computer Science",
       logoUrl: "./usc.jpeg",
       start: " ",
-      end: "Expected Dec 2024",
+      end: "December 2024",
       description: [
         "Involvement: Zeta Phi Rho, HackSC, ACM, Data Science Club"
       ],
