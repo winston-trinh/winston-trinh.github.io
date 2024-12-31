@@ -87,7 +87,7 @@ export const DATA = {
       title: "Research Assistant",
       logoUrl: "./price.jpeg",
       start: "July 2024",
-      end: "December 2024",
+      end: "Dec 2024",
       description: [
         "•	Processed and analyzed large-scale datasets exceeding 100 GB using Python and Polars to reduce data processing time.",
         "•	Developed and implemented predictive models using scikit-learn and linearmodels to support nonprofit budget forecasting analysis."
