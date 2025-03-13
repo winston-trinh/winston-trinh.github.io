@@ -9,7 +9,7 @@ export const DATA = {
   location: "Beaverton, OR",
   locationLink: "https://www.google.com/maps/place/beaverton",
   description:
-    "Student at USC studying computer science. Passionate about full stack and mobile development, cloud computing, distributed data systems, and product management.",
+    "B.S. in Computer Science from USC. Passionate about full stack and mobile development, cloud computing, distributed data systems, and product management.",
   summary: [
     "I was born and raised in [Portland, OR](https://www.google.com/maps/place/portland). Recently, I graduated with a [B.S. in Computer Science from the University of Southern California](/#education).",
     "My work-study job was to work as a [TA for CS@SC](/#work) and I was also a [research assistant for Professor Duquette](/#work). I love using technology to come up with creative solutions that can make a real difference in people’s lives—whether it’s through teaching others or personal projects. On the side, I like playing basketball, weightlifting, and trying new food."
