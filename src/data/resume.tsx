@@ -16,7 +16,7 @@ export const DATA = {
   ],
   avatarUrl: "./me.jpeg",
   skills: [
-    “Python”,
+    "Python",
     "C/C++",
     "Java",
     "React.js",
