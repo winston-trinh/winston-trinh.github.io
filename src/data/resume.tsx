@@ -27,7 +27,7 @@ export const DATA = {
     "Docker",
     "Github Actions",
     "Linux",
-    "Jira”,
+    "Jira",
     "Bash",
     "AWS EC2",
     "AWS Lambda",
