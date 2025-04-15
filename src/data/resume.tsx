@@ -84,7 +84,7 @@ export const DATA = {
       href: "https://connect.att.jobs/technology-development-program",
       badges: [],
       location: "Atlanta, GA",
-      title: "Network Engineer",
+      title: "Incoming Network Engineer",
       logoUrl: "./att.svg",
       start: " ",
       end: "Starting July 2025",
