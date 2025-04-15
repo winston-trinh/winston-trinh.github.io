@@ -35,7 +35,7 @@ export const DATA = {
     "AWS DynamoDB",
     "scikit-learn",
     "MySQL",
-    "PostgreSQL”,
+    "PostgreSQL",
     "SwiftUI",
     "Flutter",
     "JUnit",
