@@ -80,6 +80,19 @@ export const DATA = {
 
   work: [
     {
+      company: "AT&T",
+      href: "https://connect.att.jobs/technology-development-program",
+      badges: [],
+      location: "Atlanta, GA",
+      title: "Network Engineer",
+      logoUrl: "./att.svg",
+      start: " ",
+      end: "Starting July 2025",
+      description: [
+        "•	Technology Development Program - Focus on improving AT&T’s 5G and fiber infrastructure using scripting, automation and data-driven tools.",
+        "•	Use programming, data analysis, and financial expertise to transform recommendations into data-driven decisions."
+    ]},
+    {
       company: "USC Sol Price School of Public Policy",
       href: "http://www.nicolasduquette.com/index.html",
       badges: [],
