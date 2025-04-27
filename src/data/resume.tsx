@@ -88,10 +88,9 @@ export const DATA = {
       location: "Atlanta, GA",
       title: "Incoming Network Engineer",
       logoUrl: "./att.svg",
-      start: "Starting",
       end: "July 2025",
       description: [
-        "•	Technology Development Program - Focus on improving AT&T’s 5G and fiber infrastructure using scripting, automation and data-driven tools.",
+        "•	Technology Development Program - Focus on improving AT&T’s 5G and fiber infrastructure using scripting, automation and data analysis.",
         "•	Use programming, data analysis, and financial expertise to transform recommendations into data-driven decisions."
     ]},
     {
@@ -166,6 +165,45 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "Bubble Social",
+      href: "https://bubbleapp.me",
+      dates: "March 2025",
+      active: true,
+      description:
+        "Built a rate limiting backend, enabling precise control over API usage across different routes and users. Developed RPC functions to enforce dynamic request quotas and automated testing with a Bash script simulating real-time API traffic with seed data.",
+      technologies: [
+        "Bash",
+        "PostgreSQL",
+        "PL/SQL",
+        "React Testing Library",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://bubbleapp.me",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "./bubble.png",
+      video: "",
+    },
+    {
+      title: "UCLA Schedule Checker",
+      href: "",
+      dates: "February 2025",
+      active: true,
+      description:
+        "Reverse-engineered UCLA's course scheduling site by analyzing browser network activity to replicate undocumented API requests. Deployed cURL-based polling logic in AWS Lambda, storing results in DynamoDB and sending seat availability alerts via SNS alerts.",
+      technologies: [
+        "Python",
+        "AWS Lambda",
+        "AWS DynamoDB",
+        "AWS SNS",
+      ],
+      image: "./ucla.png",
+      video: "",
+    },
+    {
       title: "JoesTable",
       href: "https://github.com/winston-trinh/joestable",
       dates: "November 2023",
@@ -209,7 +247,6 @@ export const DATA = {
         //   type: "Website",
         //   href: "https://automatic.chat",
         //   icon: <Icons.globe className="size-3" />,
-        // },
       ],
       image: "./traveling_trojan.png",
       video: "",
@@ -234,21 +271,6 @@ export const DATA = {
         },
       ],
       image: "./cache_sim.png",
-      video: "",
-    },
-    {
-      title: "SkateSafe",
-      href: "",
-      dates: "April 2023",
-      active: true,
-      description:
-        "iOS application mirroring key functionalities of Waze for skateboarders/cyclists/pedestrians to report hazards using Firebase BaaS and iOS SDK (CoreLocation, MapKit, PhotoKit).",
-      technologies: [
-        "SwiftUI",
-        "Firebase BaaS",
-        "Figma",
-      ],
-      image: "./skatesafe.png",
       video: "",
     },
   ],

@@ -242,7 +242,14 @@ export default function Page() {
                   subtitle={work.title}
                   href={work.href}
                   badges={work.badges}
-                  period={`${work.start} - ${work.end ?? "Present"}`}
+                  period={
+                    ('start' in work && work.start !== undefined) 
+                      ? `${work.start} - ${work.end ?? "Present"}` 
+                      : (work.end !== undefined) 
+                        ? `Starting ${work.end}` 
+                        : "Present"
+                  }
+                  
                   description={
                     <ul>
                       {work.description.map((desc, index) => (
