@@ -153,13 +153,15 @@ export const DATA = {
   education: [
     {
       school: "University of Southern California",
-      href: "https://www.usc.edu",
+      href: "https://arr.usc.edu/records-transcripts/diplomas/certified-electronic-diploma-validation",
       degree: "Bachelor's of Science - Computer Science",
       logoUrl: "./usc.jpeg",
       start: " ",
       end: "December 2024",
       description: [
-        "Involvement: Zeta Phi Rho, HackSC, ACM, Data Science Club"
+        "Involvement: Zeta Phi Rho, HackSC, ACM, Data Science Club",
+	"CeDiD: 25D7-GQ4B-W9HR",
+	"Name: WI"
       ],
     },
   ],
