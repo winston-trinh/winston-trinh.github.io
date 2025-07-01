@@ -1,4 +1,4 @@
-"use client";
+34"use client";
 
 import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
@@ -245,11 +245,8 @@ export default function Page() {
                   period={
                     ('start' in work && work.start !== undefined) 
                       ? `${work.start} - ${work.end ?? "Present"}` 
-                      : (work.end !== undefined) 
-                        ? `Starting ${work.end}` 
-                        : "Present"
+                      : "Present"
                   }
-                  
                   description={
                     <ul>
                       {work.description.map((desc, index) => (
