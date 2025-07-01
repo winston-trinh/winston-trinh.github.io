@@ -86,9 +86,9 @@ export const DATA = {
       href: "https://connect.att.jobs/technology-development-program",
       badges: [],
       location: "Atlanta, GA",
-      title: "Incoming Network Engineer",
+      title: "Network Engineer",
       logoUrl: "./att.svg",
-      end: "July 2025",
+      start: "July 2025",
       description: [
         "•	Technology Development Program - Focus on improving AT&T’s 5G and fiber infrastructure using scripting, automation and data analysis.",
         "•	Use programming, data analysis, and financial expertise to transform recommendations into data-driven decisions."
