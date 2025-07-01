@@ -59,7 +59,7 @@ const LinkRenderer = (props: LinkRendererProps) => {
       // Smooth scroll to the element with the corresponding ID
       const targetElement = document.querySelector(href);
       if (targetElement) {
-        smoothScroll(targetElement, 1500);
+        smoothScroll(targetElement, 500);
         
         // Update the URL hash
         window.location.hash = href;
@@ -104,7 +104,7 @@ export default function Page() {
     e.preventDefault();
     const targetElement = document.querySelector('#education');
     if (targetElement) {
-      smoothScroll(targetElement, 1500);
+      smoothScroll(targetElement, 500);
     }
   };
 
@@ -112,7 +112,7 @@ export default function Page() {
     e.preventDefault();
     const targetElement = document.querySelector('#projects');
     if (targetElement) {
-      smoothScroll(targetElement, 1500);
+      smoothScroll(targetElement, 500);
     }
   };
 
