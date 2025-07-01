@@ -1,4 +1,4 @@
-34"use client";
+"use client";
 
 import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
