@@ -91,8 +91,7 @@ export const DATA = {
       start: "July 2025",
       end: "Present",
       description: [
-        "•	Technology Development Program - Focus on improving AT&T’s 5G and fiber infrastructure using scripting, automation and data analysis.",
-        "•	Use programming, data analysis, and financial expertise to transform recommendations into data-driven decisions."
+        "Mobility Tower Strategy & Roaming Analytics"
     ]},
     {
       company: "USC Sol Price School of Public Policy",
