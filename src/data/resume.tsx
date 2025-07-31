@@ -107,21 +107,6 @@ export const DATA = {
         "•	Developed and implemented predictive models using scikit-learn and linearmodels to support nonprofit budget forecasting analysis."
     ]},
     {
-      company: "Sandlines",
-      href: "https://sandlines.app",
-      badges: [],
-      location: "Remote",
-      title: "Freelance Software Developer",
-      logoUrl: "./sandlines.png",
-      start: "August 2023",
-      end: "July 2024",
-      description: [
-        "•	Collaborated with two other developers using Agile methods to ensure seamless synchronization between website and mobile app to improve candidate-voter communication and amplify voter impact in US elections.",
-        "•	Built a full-stack landing page using Next.js to increase user engagement during beta testing phase.",
-        "•	Implemented end-to-end database management by connecting landing page to Firebase Backend through Firestore API, which supports over 100 active users."
-
-    ]},
-    {
       company: "USC Viterbi School of Engineering",
       href: "https://summercamp.usc.edu",
       badges: [],
