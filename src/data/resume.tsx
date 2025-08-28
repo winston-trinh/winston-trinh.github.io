@@ -83,7 +83,7 @@ export const DATA = {
   work: [
     {
       company: "AT&T",
-      href: "https://connect.att.jobs/technology-development-program",
+      href: "https://www.att.jobs/technology-programs-and-internships",
       badges: [],
       location: "Atlanta, GA",
       title: "Network Engineer",
