@@ -91,7 +91,7 @@ export const DATA = {
       start: "July 2025",
       end: "Present",
       description: [
-        "Mobility Tower Strategy & Roaming Analytics"
+        "Quality Assurance - Mobility Tower Strategy & Roaming"
     ]},
     {
       company: "USC Sol Price School of Public Policy",
