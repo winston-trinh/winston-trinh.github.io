@@ -46,12 +46,12 @@ export const DATA = {
     { href: "./blog", icon: NotebookIcon, label: "Blog" },
   ],
   contact: {
-    email: "mailto:wntrinh@usc.edu",
+    email: "mailto:winstontrinh4@gmail.com",
     tel: "+1 (971) 727-5784",
     social: {
       Email: {
         name: "Send Email",
-        url: "mailto:wntrinh@usc.edu",
+        url: "mailto:winstontrinh4@gmail.com",
         icon: Icons.email,
 
         navbar: true,
@@ -91,7 +91,8 @@ export const DATA = {
       start: "July 2025",
       end: "Present",
       description: [
-        "Quality Assurance - Mobility Tower Strategy & Roaming"
+        "Quality Assurance - Mobility Tower Strategy & Roaming",
+        "RAN Architecture and Planning"
     ]},
     {
       company: "USC Sol Price School of Public Policy",
