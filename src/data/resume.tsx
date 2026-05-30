@@ -46,12 +46,12 @@ export const DATA = {
     { href: "./blog", icon: NotebookIcon, label: "Blog" },
   ],
   contact: {
-    email: "mailto:winstontrinh4@gmail.com",
+    email: "mailto:winstontrinh4@gmail.com?subject=Portfolio Inquiry",
     tel: "+1 (971) 727-5784",
     social: {
       Email: {
         name: "Send Email",
-        url: "mailto:winstontrinh4@gmail.com",
+        url: "mailto:winstontrinh4@gmail.com?subject=Portfolio Inquiry",
         icon: Icons.email,
 
         navbar: true,
