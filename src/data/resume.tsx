@@ -72,7 +72,7 @@ export const DATA = {
       },
       Resume: {
 	      name: "Resume",
-        url: "./resume_winston_trinh.pdf",
+        url: "./resume",
         icon: Icons.resume,
 
         navbar: true,
