@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full bg-background">
       <iframe
         src="/resume_winston_trinh.pdf"
         className="h-full w-full border-0"
