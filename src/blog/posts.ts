@@ -21,4 +21,4 @@ export const POSTS: PostMeta[] = [
 export const postUrl = (slug: string) => `/blog/${slug}/`
 
 /** Number of automated tests the post quotes; keep in sync with `npm test`. */
-export const TEST_COUNT = 42
+export const TEST_COUNT = 43
