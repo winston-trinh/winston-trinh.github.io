@@ -1,0 +1,114 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(32px, 6vw, 64px);
+  align-items: start;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: clamp(19px, 2vw, 21px);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.copy a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.copy .location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  font-size: 17px;
+  color: var(--link);
+  transform-origin: left center;
+  transition: transform 600ms var(--ease-out);
+}
+
+/* Grows slowly instead of underlining, like the experience and education links. */
+.copy .location:hover {
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .copy .location:hover {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy .location {
+    transform: none !important;
+  }
+}
+
+.skills {
+  padding: 28px;
+}
+
+.skills h3 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skill {
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 450ms var(--spring),
+    background-color 250ms var(--ease-out),
+    color 250ms var(--ease-out),
+    box-shadow 250ms var(--ease-out);
+}
+
+/* Mouse: lift on hover. Touch: same response while the finger is down. */
+@media (hover: hover) {
+  .skill:hover {
+    transform: translateY(-2px) scale(1.06);
+    background: color-mix(in srgb, var(--link) 14%, var(--surface));
+    color: var(--link);
+    box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--link) 60%, transparent);
+  }
+}
+
+.skill:active {
+  transform: scale(1.06);
+  background: color-mix(in srgb, var(--link) 14%, var(--surface));
+  color: var(--link);
+  transition-duration: 120ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill:hover,
+  .skill:active {
+    transform: none;
+  }
+}
+
+@media (max-width: 734px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills {
+    padding: 22px;
+  }
+}

@@ -1,0 +1,278 @@
+/* Index */
+.list {
+  display: grid;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.postCard {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  overflow: hidden;
+  color: var(--text);
+  transition:
+    transform 500ms var(--spring),
+    box-shadow 300ms var(--ease-out);
+}
+
+.postCard:hover {
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .postCard:hover {
+    transform: scale(1.015);
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+.cardMedia {
+  background: var(--chip);
+  min-height: 220px;
+}
+
+.cardMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(22px, 4vw, 36px);
+}
+
+.cardMeta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cardTitle {
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.cardDek {
+  color: var(--text-2);
+}
+
+.readMore {
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--link);
+}
+
+/* Post */
+.col {
+  max-width: 728px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.hero {
+  padding-top: clamp(40px, 8vw, 72px);
+  padding-bottom: clamp(56px, 8vw, 80px);
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 28px;
+  font-size: 15px;
+  transform-origin: left center;
+  transition: transform 600ms var(--ease-out);
+}
+
+.back:hover {
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .back:hover {
+    transform: scale(1.04);
+  }
+}
+
+.title {
+  font-size: clamp(40px, 7vw, 64px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.032em;
+  text-wrap: balance;
+}
+
+.dek {
+  margin-top: 20px;
+  font-size: clamp(20px, 2.4vw, 24px);
+  line-height: 1.4;
+  color: var(--text-2);
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.byline strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.article {
+  padding-bottom: 96px;
+  font-size: 19px;
+  line-height: 1.6;
+  letter-spacing: -0.012em;
+}
+
+.article > * + * {
+  margin-top: 1.1em;
+}
+
+.article p {
+  text-wrap: pretty;
+}
+
+.article .lead {
+  font-size: 1.08em;
+  line-height: 1.55;
+}
+
+.article h2 {
+  margin-top: 2.4em;
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.article h3 {
+  margin-top: 1.8em;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.figure {
+  margin: 2em 0 0;
+}
+
+.frame {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.frame :global(.mermaid-diagram) {
+  min-width: 520px;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.frame :global(.mermaid-diagram svg) {
+  max-width: 100%;
+  height: auto;
+}
+
+.grid {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.figure figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.figure figcaption b {
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 1.4em;
+}
+
+.stat {
+  padding: 20px;
+  border-radius: 14px;
+  background: var(--bg-alt);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+.num {
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--text-2);
+}
+
+.footer {
+  padding: 20px 0 calc(20px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--hairline);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+@media (max-width: 734px) {
+  .postCard {
+    grid-template-columns: 1fr;
+  }
+
+  .cardMedia {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .article {
+    font-size: 17px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .frame {
+    padding: 16px;
+  }
+}

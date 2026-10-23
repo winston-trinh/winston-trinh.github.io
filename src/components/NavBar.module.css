@@ -1,0 +1,175 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.inner {
+  max-width: 980px;
+  height: var(--nav-h);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-right: auto;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.links a {
+  position: relative;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  opacity: 0.8;
+  transition:
+    opacity 200ms var(--ease-out),
+    color 200ms var(--ease-out);
+}
+
+.links a:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+/* Section in view: full-strength text plus a short accent bar beneath. */
+.links a.active {
+  opacity: 1;
+}
+
+.links a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--link);
+  transform: translateX(-50%) scaleX(0);
+  transition: transform 400ms var(--spring);
+}
+
+.links a.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iconBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background-color 200ms var(--ease-out),
+    transform 120ms ease-out;
+}
+
+.iconBtn:hover {
+  background: var(--chip);
+}
+
+.iconBtn:active {
+  transform: scale(0.92);
+}
+
+.menuBtn {
+  display: none;
+}
+
+@media (max-width: 734px) {
+  .menuBtn {
+    display: inline-grid;
+  }
+
+  .links {
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px var(--gutter) 24px;
+    background: var(--bg);
+    box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid var(--hairline);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      opacity 240ms var(--ease-out),
+      transform 360ms var(--spring),
+      visibility 0s 360ms;
+  }
+
+  .open .links {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity 240ms var(--ease-out),
+      transform 360ms var(--spring);
+  }
+
+  .links li + li {
+    border-top: 1px solid var(--hairline);
+  }
+
+  .links a {
+    display: block;
+    padding: 14px 0;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    opacity: 1;
+  }
+
+  .links a.active {
+    color: var(--link);
+  }
+
+  .links a::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .links {
+    transform: none !important;
+  }
+}
