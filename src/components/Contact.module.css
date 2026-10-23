@@ -1,0 +1,74 @@
+.contact {
+  text-align: center;
+  padding-bottom: 0;
+}
+
+.lede {
+  max-width: 560px;
+  margin: -16px auto 0;
+  font-size: clamp(19px, 2.2vw, 21px);
+  color: var(--text-2);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+}
+
+/* Same feel as the experience links: the button grows slowly, its icon springs. */
+.links a {
+  transition:
+    transform 600ms var(--ease-out),
+    background-color 200ms var(--ease-out);
+}
+
+.links a svg {
+  flex: none;
+  transition: transform 500ms var(--spring);
+}
+
+@media (hover: hover) {
+  .links a:hover {
+    transform: scale(1.04);
+  }
+
+  .links a:hover svg {
+    transform: scale(1.18);
+  }
+}
+
+.links a:active {
+  transform: scale(0.97);
+  transition-duration: 120ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .links a,
+  .links a svg {
+    transform: none !important;
+  }
+}
+
+.footer {
+  margin-top: clamp(72px, 10vw, 112px);
+  padding: 20px 0 calc(20px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--hairline);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+@media (max-width: 734px) {
+  .links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .links a {
+    width: 100%;
+  }
+}

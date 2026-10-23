@@ -1,0 +1,168 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  padding: clamp(22px, 4vw, 36px);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.logo {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+
+/* Logo behaves like a project card: spring lift with a deeper shadow. */
+.logoLink {
+  flex: none;
+  display: block;
+  border-radius: 50%;
+  transition:
+    transform 500ms var(--spring),
+    box-shadow 300ms var(--ease-out);
+}
+
+/* Name grows slowly instead of underlining. */
+.nameLink {
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 600ms var(--ease-out);
+}
+
+.nameLink:hover {
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .logoLink:hover {
+    transform: scale(1.08);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .nameLink:hover {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoLink,
+  .nameLink {
+    transform: none !important;
+  }
+}
+
+.company {
+  font-size: clamp(21px, 2.6vw, 24px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.company a {
+  color: var(--text);
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--text-2);
+}
+
+.location {
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.meta {
+  font-size: 15px;
+  color: var(--text-3);
+}
+
+.bullets {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--text-2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bullets li::marker {
+  color: var(--text-3);
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 28px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--hairline);
+}
+
+.role {
+  position: relative;
+}
+
+.role + .role {
+  margin-top: 28px;
+}
+
+.role::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 4px var(--accent);
+}
+
+.role + .role::before {
+  box-shadow: inset 0 0 0 4px var(--text-3);
+}
+
+.roleTitle {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 2px;
+}
+
+@media (max-width: 734px) {
+  .header {
+    align-items: flex-start;
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bullets {
+    font-size: 15px;
+  }
+}

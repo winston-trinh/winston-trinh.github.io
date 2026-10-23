@@ -1,0 +1,17 @@
+.face {
+  width: clamp(220px, 58vw, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--face-bg);
+  box-shadow: var(--shadow-hover);
+  touch-action: manipulation;
+}
+
+.face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-select: none;
+}

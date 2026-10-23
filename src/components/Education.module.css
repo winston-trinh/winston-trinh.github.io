@@ -1,0 +1,99 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: clamp(22px, 4vw, 36px);
+}
+
+.logo {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+
+/* Logo behaves like a project card: spring lift with a deeper shadow. */
+.logoLink {
+  flex: none;
+  display: block;
+  border-radius: 18px;
+  transition:
+    transform 500ms var(--spring),
+    box-shadow 300ms var(--ease-out);
+}
+
+/* Name grows slowly instead of underlining. */
+.nameLink {
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 600ms var(--ease-out);
+}
+
+.nameLink:hover {
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .logoLink:hover {
+    transform: scale(1.08);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .nameLink:hover {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoLink,
+  .nameLink {
+    transform: none !important;
+  }
+}
+
+.school {
+  font-size: clamp(21px, 2.6vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.school a {
+  color: var(--text);
+}
+
+.degree {
+  margin-top: 4px;
+  font-size: 19px;
+  color: var(--text-2);
+}
+
+.meta {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--text-3);
+}
+
+@media (max-width: 734px) {
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+  }
+
+  .logoLink {
+    border-radius: 14px;
+  }
+
+  .degree {
+    font-size: 17px;
+  }
+}
