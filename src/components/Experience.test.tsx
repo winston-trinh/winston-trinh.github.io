@@ -14,8 +14,8 @@ describe('Experience', () => {
 
   it('renders single-role companies without a timeline', () => {
     render(<Experience />)
-    const card = screen.getByRole('article', { name: 'Sandlines' })
-    expect(within(card).getByText('Freelance Software Developer')).toBeInTheDocument()
+    const card = screen.getByRole('article', { name: 'USC Sol Price School of Public Policy' })
+    expect(within(card).getByText('Research Assistant')).toBeInTheDocument()
     expect(within(card).queryAllByRole('heading', { level: 4 })).toHaveLength(0)
   })
 

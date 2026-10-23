@@ -115,24 +115,6 @@ export const DATA = {
       ],
     },
     {
-      company: 'Sandlines',
-      href: 'https://sandlines.app',
-      logoUrl: '/sandlines.webp',
-      roles: [
-        {
-          title: 'Freelance Software Developer',
-          location: 'Remote',
-          start: 'August 2023',
-          end: 'July 2024',
-          bullets: [
-            'Collaborated with two other developers using Agile methods to ensure seamless synchronization between website and mobile app to improve candidate-voter communication and amplify voter impact in US elections.',
-            'Built a full-stack landing page using Next.js to increase user engagement during beta testing phase.',
-            'Implemented end-to-end database management by connecting landing page to Firebase Backend through Firestore API, which supports over 100 active users.',
-          ],
-        },
-      ],
-    },
-    {
       company: 'USC Viterbi School of Engineering',
       href: 'https://summercamp.usc.edu',
       logoUrl: '/usc.webp',

@@ -30,3 +30,7 @@ it('pre-fills the email subject', () => {
   expect(url.searchParams.get('subject')).toBe('Website Inquiry')
   expect(url.searchParams.get('body')).toBe('Hi Winston,\r\n\r\n')
 })
+
+it('no longer lists Sandlines', () => {
+  expect(DATA.experience.map((c) => c.company)).not.toContain('Sandlines')
+})
