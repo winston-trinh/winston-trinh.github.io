@@ -10,10 +10,10 @@ export function Contact() {
         <Reveal>
           <p className="eyebrow">Contact</p>
           <h2 id="contact-title" className="section-title">
-            Let’s build something.
+            Say hello!
           </h2>
           <p className={styles.lede}>
-            Whether it’s a role, a project, or just a good conversation about tech, my inbox is open.
+            Always happy to talk shop, trade ideas, or hear what you’re building.
           </p>
           <ul className={styles.links}>
             {DATA.social.map((s) => {

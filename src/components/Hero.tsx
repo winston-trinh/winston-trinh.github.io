@@ -4,21 +4,20 @@ import { Icons, socialIcon } from './Icons'
 import styles from './Hero.module.css'
 
 export function Hero() {
-  const email = DATA.social.find((s) => s.name === 'Email')!
   const resume = DATA.social.find((s) => s.name === 'Resume')!
   return (
     <section id="top" className={styles.hero} aria-label="Introduction">
       <div className={`container ${styles.inner}`}>
         <GazeFace name={DATA.name} />
         <p className={styles.hint} aria-hidden="true">
-          Go ahead, move your cursor. I’m watching.
+          Move your cursor. I’ll keep an eye on it.
         </p>
         <h1 className={styles.title}>
           Hi, I’m <span className={styles.name}>{DATA.name.split(' ')[0]}.</span>
         </h1>
         <p className={styles.lede}>{DATA.description}</p>
         <div className={styles.ctas}>
-          <a className="btn btn-primary" href={email.url}>
+          <a className="btn btn-primary" href="#contact">
             Get in touch
           </a>
           <a className="btn btn-secondary" href={resume.url} target="_blank" rel="noreferrer">
