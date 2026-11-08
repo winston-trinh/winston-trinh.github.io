@@ -2,6 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BlogApp } from './BlogPages'
 import '../styles/global.css'
+import { applyTranslucency, readTranslucency } from '../hooks/useGlass'
+
+applyTranslucency(readTranslucency())
 
 const root = document.getElementById('root')!
 

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import App from './App'
+import { groupProjects } from './components/Projects'
 import { DATA } from './data/resume'
 
 it('renders every section of the portfolio', () => {
@@ -9,7 +10,7 @@ it('renders every section of the portfolio', () => {
     expect(screen.getByRole('heading', { level: 2, name })).toBeInTheDocument()
   }
   expect(screen.getByRole('img', { name: /Portrait of Winston Trinh/ })).toBeInTheDocument()
-  expect(screen.getAllByRole('article')).toHaveLength(DATA.experience.length + DATA.projects.length + DATA.education.length)
+  expect(screen.getAllByRole('article')).toHaveLength(DATA.experience.length + groupProjects(DATA.projects).length + DATA.education.length)
 })
 
 it('orders sections with education right after experience', () => {

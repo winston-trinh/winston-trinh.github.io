@@ -1,4 +1,5 @@
 import { DATA } from '../data/resume'
+import { GlassLink } from './GlassLink'
 import { socialIcon } from './Icons'
 import { Reveal } from './Reveal'
 import styles from './Contact.module.css'
@@ -18,16 +19,16 @@ export function Contact() {
           <ul className={styles.links}>
             {DATA.social.map((s) => {
               const Icon = socialIcon[s.name as keyof typeof socialIcon]
-              const external = s.url.startsWith('http') || s.url.endsWith('.pdf')
               return (
                 <li key={s.name}>
-                  <a
-                    className={s.name === 'Email' ? 'btn btn-primary' : 'btn btn-secondary'}
+                  <GlassLink
                     href={s.url}
-                    {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                    size="large"
+                    variant={s.name === 'Email' ? 'filled' : 'glass'}
+                    icon={<Icon width={18} height={18} />}
                   >
-                    <Icon width={18} height={18} /> {s.label}
-                  </a>
+                    {s.label}
+                  </GlassLink>
                 </li>
               )
             })}

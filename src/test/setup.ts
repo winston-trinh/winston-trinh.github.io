@@ -52,3 +52,19 @@ if (!('PointerEvent' in window)) {
   }
   Object.defineProperty(window, 'PointerEvent', { writable: true, value: PointerEventPolyfill })
 }
+
+// glisse fits its glass with ResizeObserver and paints rims on a 2D canvas; jsdom has neither.
+if (!('ResizeObserver' in window)) {
+  class ResizeObserverStub {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  }
+  Object.defineProperty(window, 'ResizeObserver', { writable: true, value: ResizeObserverStub })
+  Object.defineProperty(globalThis, 'ResizeObserver', { writable: true, value: ResizeObserverStub })
+}
+HTMLCanvasElement.prototype.getContext = (() => null) as unknown as HTMLCanvasElement['getContext']
+for (const name of ['setPointerCapture', 'releasePointerCapture'] as const) {
+  if (!Element.prototype[name]) Element.prototype[name] = () => {}
+}
+if (!Element.prototype.hasPointerCapture) Element.prototype.hasPointerCapture = () => false

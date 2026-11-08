@@ -27,7 +27,7 @@ describe('blog', () => {
     expect(screen.getByRole('heading', { level: 1, name: POSTS[0].title })).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 2, name: 'What I learned' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '‹ All posts' })).toHaveAttribute('href', '/blog/')
-    await waitFor(() => expect(screen.getAllByTestId('diagram')).toHaveLength(2))
+    await waitFor(() => expect(screen.getAllByTestId('diagram')).toHaveLength(3))
   })
 
   it('draws diagram labels as SVG text, which strict sanitizing keeps', async () => {

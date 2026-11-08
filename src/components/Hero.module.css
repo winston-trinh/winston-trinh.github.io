@@ -1,6 +1,140 @@
 .hero {
-  padding: clamp(48px, 10vw, 96px) 0 clamp(72px, 12vw, 128px);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(32px, 7vw, 72px) 0 clamp(72px, 12vw, 128px);
   background: var(--bg);
+}
+
+/* Soft colour for the glass to bend: the same hues as the name, far out of focus. */
+.ambient {
+  position: absolute;
+  inset: -10% -20% auto;
+  height: 120%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 22% 62%, rgb(41 151 255 / 0.22), transparent 70%),
+    radial-gradient(34% 28% at 78% 58%, rgb(255 94 168 / 0.18), transparent 70%),
+    radial-gradient(30% 26% at 50% 82%, rgb(163 91 255 / 0.16), transparent 70%);
+  filter: blur(20px);
+}
+
+/* Translucency control: clear on the left, frosted on the right, marked with icons as on iOS. */
+.glass {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 340px);
+  margin-top: 20px;
+}
+
+.glassEnd {
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: var(--text-3);
+}
+
+.slider {
+  --thumb-w: 38px;
+  --thumb-h: 24px;
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+  touch-action: pan-y;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slider:focus-visible {
+  outline: none;
+}
+
+/* Track: a thin rail with the accent fill up to the thumb. */
+.slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--lg-fill) calc(var(--thumb-w) / 2 + (100% - var(--thumb-w)) * var(--p)),
+    var(--lg-rail) 0
+  );
+}
+
+.slider::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--lg-rail);
+}
+
+.slider::-moz-range-progress {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--lg-fill);
+}
+
+/* Thumb: a white capsule that, held, swells into clear glass. */
+.slider::-webkit-slider-thumb {
+  width: var(--thumb-w);
+  height: var(--thumb-h);
+  margin-top: calc((6px - var(--thumb-h)) / 2);
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow:
+    0 3px 10px rgb(0 0 0 / 0.16),
+    0 0 0 0.5px rgb(0 0 0 / 0.06);
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    transform 260ms var(--spring),
+    background-color 160ms ease-out,
+    box-shadow 160ms ease-out;
+}
+
+.slider::-moz-range-thumb {
+  width: var(--thumb-w);
+  height: var(--thumb-h);
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.16);
+  transition:
+    transform 260ms var(--spring),
+    background-color 160ms ease-out;
+}
+
+.slider:active::-webkit-slider-thumb {
+  transform: scale(1.4, 1.5);
+  background: rgb(255 255 255 / 0.28);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.7),
+    inset 0 2px 2px rgb(255 255 255 / 0.6),
+    inset 0 -6px 12px rgb(0 0 0 / 0.06),
+    0 8px 22px rgb(0 0 0 / 0.18);
+}
+
+.slider:active::-moz-range-thumb {
+  transform: scale(1.4, 1.5);
+  background: rgb(255 255 255 / 0.28);
+}
+
+.slider:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 3px 10px rgb(0 0 0 / 0.16),
+    0 0 0 3px var(--lg-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider::-webkit-slider-thumb,
+  .slider::-moz-range-thumb {
+    transition: none;
+  }
 }
 
 .inner {
@@ -56,22 +190,8 @@
 
 .social {
   display: flex;
-  gap: 20px;
+  gap: 14px;
   list-style: none;
   margin: 28px 0 0;
   padding: 0;
-}
-
-.social a {
-  display: inline-grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  color: var(--text-2);
-  transition: color 200ms var(--ease-out);
-}
-
-.social a:hover {
-  color: var(--text);
 }

@@ -2,6 +2,15 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { useResolvedTheme } from '../hooks/useResolvedTheme'
 import { loadMermaid } from './loadMermaid'
 
+// Mermaid keeps global state while it draws, so overlapping renders can clobber each
+// other and leave a diagram blank. Draw one at a time.
+let queue: Promise<unknown> = Promise.resolve()
+const oneAtATime = <T,>(task: () => Promise<T>): Promise<T> => {
+  const run = queue.then(task, task)
+  queue = run.catch(() => undefined)
+  return run
+}
+
 /** Renders a Mermaid diagram, re-drawing it when the theme changes. Mermaid loads only on pages that use it. */
 export function Mermaid({ chart, label }: { chart: string; label: string }) {
   const theme = useResolvedTheme()
@@ -11,8 +20,9 @@ export function Mermaid({ chart, label }: { chart: string; label: string }) {
 
   useEffect(() => {
     let cancelled = false
-    loadMermaid()
-      .then(async (mermaid) => {
+    oneAtATime(() =>
+      loadMermaid().then(async (mermaid) => {
+        if (cancelled) return
         mermaid.initialize({
           startOnLoad: false,
           theme: theme === 'dark' ? 'dark' : 'neutral',
@@ -24,8 +34,8 @@ export function Mermaid({ chart, label }: { chart: string; label: string }) {
         })
         const { svg } = await mermaid.render(`${id}-${theme}`, chart)
         if (!cancelled && ref.current) ref.current.innerHTML = svg
-      })
-      .catch(() => !cancelled && setFailed(true))
+      }),
+    ).catch(() => !cancelled && setFailed(true))
     return () => {
       cancelled = true
     }

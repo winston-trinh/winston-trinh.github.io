@@ -1,109 +1,363 @@
+/* Rows leave room above each folder for the screenshots that rise out of it. */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 156px 36px;
+  padding-top: 48px;
 }
 
-.grid > * {
-  display: flex;
+/* Folders follow the theme: frosted silver by day, graphite by night. */
+.folder {
+  --folder-back: #e6e9ef;
+  --folder-back-2: #d6dbe3;
+  --folder-front: 255 255 255;
+  --folder-edge: rgb(255 255 255 / 0.85);
+  --folder-shadow: rgb(30 40 60 / 0.18);
+  --folder-ink: var(--text);
+  --folder-ink-2: var(--text-2);
+  --folder-chip: rgb(0 0 0 / 0.06);
+  --radius-folder: 30px;
+  position: relative;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow: hidden;
-  transition:
-    transform 500ms var(--spring),
-    box-shadow 300ms var(--ease-out);
+:global(:root[data-theme='dark']) .folder {
+  --folder-back: #3b3b41;
+  --folder-back-2: #2d2d32;
+  --folder-front: 64 64 72;
+  --folder-edge: rgb(255 255 255 / 0.16);
+  --folder-shadow: rgb(0 0 0 / 0.5);
+  --folder-chip: rgb(255 255 255 / 0.1);
 }
 
-@media (hover: hover) {
-  .card:hover {
-    transform: scale(1.015);
-    box-shadow: var(--shadow-hover);
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .folder {
+    --folder-back: #3b3b41;
+    --folder-back-2: #2d2d32;
+    --folder-front: 64 64 72;
+    --folder-edge: rgb(255 255 255 / 0.16);
+    --folder-shadow: rgb(0 0 0 / 0.5);
+    --folder-chip: rgb(255 255 255 / 0.1);
   }
 }
 
-.media {
-  aspect-ratio: 16 / 10;
-  background: var(--chip);
-  overflow: hidden;
+.stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  perspective: 1000px;
 }
 
-.media img {
+/* Covers the folder so a tap anywhere opens it. */
+.toggle {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-folder);
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The back of the folder, with its soft, rounded tab. */
+.back {
+  position: absolute;
+  inset: 9% 0 0;
+  border-radius: 16px var(--radius-folder) var(--radius-folder) var(--radius-folder);
+  background: linear-gradient(180deg, var(--folder-back), var(--folder-back-2));
+  box-shadow:
+    inset 0 1px 0 var(--folder-edge),
+    0 18px 40px -20px var(--folder-shadow);
+}
+
+.back::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% - 1px);
+  left: 0;
+  width: 38%;
+  height: 24px;
+  border-radius: 18px 18px 0 0;
+  background: var(--folder-back);
+  box-shadow: inset 0 1px 0 var(--folder-edge);
+}
+
+/* Screenshots: tucked into the folder, rising straight up (drifting a little right) when it opens. */
+.pic {
+  position: absolute;
+  z-index: 2;
+  left: 12%;
+  top: 24%;
+  width: 56%;
+  aspect-ratio: 16 / 10;
+  padding: 5px;
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 26px -10px rgb(0 0 0 / 0.4);
+  transform: translate(calc(var(--i) * 6%), calc(var(--i) * -5%)) rotate(calc(var(--i) * 3deg - 1.5deg));
+  transition:
+    transform 650ms var(--spring),
+    box-shadow 300ms var(--ease-out);
+  transition-delay: calc(var(--i) * 45ms);
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button.pic {
+  cursor: pointer;
+}
+
+div.pic {
+  pointer-events: none;
+}
+
+.pic img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 13px;
 }
 
-.body {
+.caption {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  max-width: calc(100% - 20px);
+  overflow: hidden;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgb(var(--folder-front) / 0.8);
+  -webkit-backdrop-filter: blur(10px) saturate(1.6);
+  backdrop-filter: blur(10px) saturate(1.6);
+  color: var(--folder-ink);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out);
+}
+
+/* The front flap is frosted glass: a hint of the screenshots inside shows through. */
+.front {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  height: 62%;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  gap: 10px;
-  padding: 24px 26px 26px;
+  padding: 18px 22px;
+  border-radius: var(--radius-folder);
+  color: var(--folder-ink);
+  background: rgb(var(--folder-front) / calc(0.42 + 0.35 * var(--glass-alpha, 0.59)));
+  -webkit-backdrop-filter: blur(calc(var(--lg-blur, 8px) + 2px)) saturate(1.5);
+  backdrop-filter: blur(calc(var(--lg-blur, 8px) + 2px)) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 var(--folder-edge),
+    inset 0 0 0 0.5px var(--folder-edge),
+    0 -8px 24px -16px var(--folder-shadow);
+  transform-origin: 50% 100%;
+  transition:
+    height 600ms var(--spring),
+    transform 700ms var(--spring);
+  pointer-events: none;
 }
 
-.dates {
-  font-size: 13px;
+.cover {
+  margin-top: auto;
+  transition: opacity 200ms var(--ease-out);
+}
+
+.date {
+  margin: 0;
+  font-size: 22px;
   font-weight: 600;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-.title {
-  font-size: 24px;
-  line-height: 1.17;
+.count {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--folder-ink-2);
+}
+
+.info {
+  position: absolute;
+  inset: 18px 22px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 500ms var(--spring),
+    visibility 0s 200ms;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  animation: detailsIn 360ms var(--ease-out);
+}
+
+@keyframes detailsIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+.projectTitle {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-.title a {
-  color: var(--text);
+.projectTitle a {
+  color: inherit;
+  pointer-events: auto;
 }
 
 .description {
-  color: var(--text-2);
-  font-size: 15px;
-  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--folder-ink-2);
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   list-style: none;
-  margin: 4px 0 0;
+  margin: 0;
   padding: 0;
+}
+
+.tags li {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--folder-chip);
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .links {
   display: flex;
-  gap: 18px;
+  gap: 16px;
   margin-top: auto;
-  padding-top: 8px;
 }
 
 .links a {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  pointer-events: auto;
 }
 
-@media (max-width: 734px) {
+/* Open — by hover, keyboard focus, or a tap (data-open). The first screenshot
+   rises just clear of the flap; each one after it stacks higher, a touch to the right. */
+.folder[data-open] .pic {
+  transform: translate(calc(3% + var(--i) * 9%), calc(-96% - var(--i) * 46%)) rotate(calc(var(--i) * 4deg - 2deg));
+}
+
+.folder[data-open] .pic[data-selected] {
+  box-shadow:
+    0 0 0 2px var(--link),
+    0 16px 34px -12px rgb(0 0 0 / 0.45);
+}
+
+.folder[data-open] .caption {
+  opacity: 1;
+}
+
+.folder[data-open] .front {
+  height: 74%;
+  transform: rotateX(-6deg);
+}
+
+.folder[data-open] .cover {
+  opacity: 0;
+}
+
+.folder[data-open] .info {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 300ms var(--ease-out) 120ms,
+    transform 600ms var(--spring) 80ms;
+}
+
+@media (hover: hover) {
+  .folder:is(:hover, :focus-within) .pic {
+    transform: translate(calc(3% + var(--i) * 9%), calc(-96% - var(--i) * 46%)) rotate(calc(var(--i) * 4deg - 2deg));
+  }
+
+  .folder:is(:hover, :focus-within) .pic[data-selected] {
+    box-shadow:
+      0 0 0 2px var(--link),
+      0 16px 34px -12px rgb(0 0 0 / 0.45);
+  }
+
+  .folder:is(:hover, :focus-within) .caption {
+    opacity: 1;
+  }
+
+  .folder:is(:hover, :focus-within) .front {
+    height: 74%;
+    transform: rotateX(-6deg);
+  }
+
+  .folder:is(:hover, :focus-within) .cover {
+    opacity: 0;
+  }
+
+  .folder:is(:hover, :focus-within) .info {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 300ms var(--ease-out) 120ms,
+      transform 600ms var(--spring) 80ms;
+  }
+}
+
+@media (max-width: 760px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 140px;
+    padding-top: 40px;
   }
 
-  .body {
-    padding: 20px;
+  .stage {
+    aspect-ratio: 6 / 5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pic,
+  .front,
+  .info,
+  .details {
+    transition: opacity 200ms linear !important;
+    animation: none !important;
   }
 
-  .title {
-    font-size: 21px;
+  .front {
+    transform: none !important;
   }
 }

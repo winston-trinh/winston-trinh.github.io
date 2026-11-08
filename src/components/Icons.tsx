@@ -50,14 +50,46 @@ export const Icons = {
       <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z" />
     </svg>
   ),
-  menu: (p: IconProps) => (
+  person: (p: IconProps) => (
     <svg {...base(p)}>
-      <path d="M4 8h16M4 16h16" />
+      <circle cx="12" cy="8" r="3.75" />
+      <path d="M4.75 20a7.25 7.25 0 0 1 14.5 0" />
     </svg>
   ),
-  close: (p: IconProps) => (
+  briefcase: (p: IconProps) => (
     <svg {...base(p)}>
-      <path d="M6 6l12 12M18 6 6 18" />
+      <rect x="3" y="7" width="18" height="13" rx="2.5" />
+      <path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18" />
+    </svg>
+  ),
+  cap: (p: IconProps) => (
+    <svg {...base(p)}>
+      <path d="M2.5 9.5 12 5l9.5 4.5L12 14 2.5 9.5Z" />
+      <path d="M6.5 11.5v4.25c0 1.25 2.5 2.75 5.5 2.75s5.5-1.5 5.5-2.75V11.5M21.5 9.5v5" />
+    </svg>
+  ),
+  folder: (p: IconProps) => (
+    <svg {...base(p)}>
+      <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h3.4l2 2.2h7.6A2.5 2.5 0 0 1 21 9.7v7.8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-10Z" />
+    </svg>
+  ),
+  chat: (p: IconProps) => (
+    <svg {...base(p)}>
+      <path d="M20 11.5c0 4.14-3.58 7.5-8 7.5a8.6 8.6 0 0 1-3.1-.57L4 19.5l1.3-3.7A7.1 7.1 0 0 1 4 11.5C4 7.36 7.58 4 12 4s8 3.36 8 7.5Z" />
+    </svg>
+  ),
+  /** SF Symbols' drop: clear, liquid glass. */
+  drop: (p: IconProps) => (
+    <svg {...base(p)}>
+      <path d="M12 3.2c-.4.5-6.3 7.1-6.3 11.6a6.3 6.3 0 0 0 12.6 0c0-4.5-5.9-11.1-6.3-11.6Z" />
+    </svg>
+  ),
+  /** SF Symbols' snowflake: frosted glass. */
+  snowflake: (p: IconProps) => (
+    <svg {...base(p)} strokeWidth={1.5}>
+      {[0, 60, 120, 180, 240, 300].map((deg) => (
+        <path key={deg} transform={`rotate(${deg} 12 12)`} d="M12 12V2.8M9.6 4.4 12 6.2l2.4-1.8" />
+      ))}
     </svg>
   ),
   arrowUpRight: (p: IconProps) => (

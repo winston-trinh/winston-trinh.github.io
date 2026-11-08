@@ -7,7 +7,7 @@ For the full story of how it was designed and built, read the blog post: [Buildi
 ## Stack
 
 - React 18, TypeScript and Vite 5, with a multi-page build for the homepage and blog
-- Plain CSS Modules on shared design tokens, with light and dark themes
+- Apple's Liquid Glass material via [glisse](https://github.com/0kzh/glisse), on CSS Modules and shared design tokens, with light and dark themes
 - Vitest and Testing Library for tests
 - GitHub Actions deploys to GitHub Pages
 
@@ -15,18 +15,24 @@ For the full story of how it was designed and built, read the blog post: [Buildi
 
 `public/gaze/` holds 121 pre-generated WebP frames on an 11×11 grid of gaze directions. `useGaze` maps the pointer position to the nearest cell, throttled to `requestAnimationFrame`, and `GazeFace` swaps to that frame. All frames are preloaded. When `prefers-reduced-motion` is set, the face stays centered.
 
-The frames come from `scripts/generate_gaze_ai.py`, which uses Replicate's `fofr/expression-editor` model. The script is resumable and its output is deterministic. It writes `src/gaze/manifest.json`, so the grid size isn't hard-coded in the frontend.
+The frames were generated with Replicate's `fofr/expression-editor` model. `src/gaze/manifest.json` describes the grid, so its size isn't hard-coded in the frontend.
+
+## Liquid Glass
+
+Buttons, tabs, the search field and the theme switch are glisse components. Links that need to look like buttons use `GlassLink`, which wraps glisse's `Glass`. The hero slider is a native range input styled like iOS, so the browser moves its thumb with no React render. `useGlass` writes `--glass-alpha` and `--lg-blur` to `<html>` once per frame, which makes every glass surface, including the project folders' flaps, change in the same frame as you drag from clear (left) to frosted (right). Glass never goes fully clear: the tint and blur keep a minimum so text stays readable. The value is saved to `localStorage` once dragging stops.
+
+Search (`src/lib/searchIndex.ts`) indexes `DATA` and the blog posts in the browser. It needs no dependency and no network request. Press ⌘K or `/` to open it. Results are grouped by section and keep page order, so experience reads newest first.
 
 ## Project layout
 
 ```
 src/
   data/resume.ts      All site content (single source of truth)
-  components/         Homepage sections, nav, gaze face
-  hooks/              Gaze tracking, theme, scroll-spy, reveal
+  components/         Homepage sections, glass nav and search, gaze face
+  hooks/              Gaze tracking, theme, glass translucency, scroll-spy, reveal
+  lib/                Gaze math, site search index
   blog/               Blog index, posts and Mermaid diagrams
 blog/                 HTML entry per blog page (one per post)
-scripts/              Gaze frame generators (AI and local fallback)
 public/               Static assets, gaze frames, résumé PDF
 ```
 
@@ -37,13 +43,6 @@ npm install
 npm run dev        # local dev server
 npm test           # run the test suite
 npm run build      # type-check and build to dist/
-```
-
-To regenerate the gaze frames, you need a Replicate API token:
-
-```sh
-export REPLICATE_API_TOKEN=...
-npm run gaze -- --steps 5 --force
 ```
 
 ## Deployment

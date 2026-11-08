@@ -204,6 +204,13 @@
   border-radius: 12px;
 }
 
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
 .figure figcaption {
   margin-top: 12px;
   font-size: 14px;
@@ -248,7 +255,7 @@
 }
 
 .footer {
-  padding: 20px 0 calc(20px + env(safe-area-inset-bottom));
+  padding: 20px 0 calc(20px + max(var(--dock-space), env(safe-area-inset-bottom)));
   border-top: 1px solid var(--hairline);
   font-size: 12px;
   color: var(--text-3);

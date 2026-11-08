@@ -1,0 +1,368 @@
+.root {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* Everything but the search sinks into a frosted blur. */
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 260ms var(--ease-out),
+    visibility 0s 260ms;
+}
+
+.open .scrim {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 260ms var(--ease-out);
+}
+
+.field {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 360px);
+}
+
+.field > :global(.lg-input) {
+  max-width: none;
+  height: 44px;
+  border-radius: 22px;
+}
+
+.field > :global(.lg-input) input {
+  font-size: 16px; /* 16px keeps iOS from zooming on focus. */
+}
+
+/* Autocomplete: grey text continuing what's typed, laid exactly over the field's text. */
+.ghost {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: normal;
+  white-space: pre;
+  pointer-events: none;
+}
+
+.ghostTyped {
+  visibility: hidden;
+}
+
+.ghostRest {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--lg-muted);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.tabKey {
+  padding: 1px 6px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px var(--lg-separator);
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--lg-muted);
+}
+
+/* No Tab key on touch screens: tapping the grey text accepts it instead. */
+@media (hover: none) {
+  .tabKey {
+    display: none;
+  }
+}
+
+.didYouMean {
+  display: block;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.didYouMean b {
+  color: var(--link);
+  font-weight: 600;
+}
+
+@media (hover: hover) {
+  .didYouMean:hover {
+    background: var(--lg-highlight);
+  }
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  translate: -50% 0;
+  width: min(600px, calc(100vw - 2 * var(--gutter)));
+  max-height: min(70vh, 620px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px;
+  border-radius: 24px;
+  background: var(--lg-surface);
+  -webkit-backdrop-filter: blur(30px) saturate(1.6);
+  backdrop-filter: blur(30px) saturate(1.6);
+  box-shadow:
+    inset 0 0 0 0.5px var(--lg-surface-edge),
+    0 24px 60px -12px var(--lg-shadow);
+  animation: panelIn 320ms var(--spring);
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+.group + .group {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 0.5px solid var(--lg-separator);
+}
+
+.groupLabel {
+  padding: 8px 12px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--lg-muted);
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: var(--text);
+  text-decoration: none;
+  scroll-margin: 8px;
+}
+
+.option:hover {
+  text-decoration: none;
+}
+
+.option[aria-selected='true'] {
+  background: var(--lg-highlight);
+}
+
+.optionTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.heart {
+  width: 15px;
+  height: 15px;
+  fill: #ff4f8b;
+  animation: heartbeat 1.4s var(--ease-out) 2;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.28);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart {
+    animation: none;
+  }
+}
+
+.optionSubtitle {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.optionDetail {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-3);
+}
+
+.empty {
+  padding: 18px 12px;
+  font-size: 15px;
+  color: var(--text-2);
+  text-align: center;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px 12px 4px;
+}
+
+.chip {
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--lg-highlight);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 300ms var(--spring);
+}
+
+@media (hover: hover) {
+  .chip:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Phones and tablets: the field sits beside the switch, so the results span
+   the screen between the gutters instead of centring on the field. */
+@media (max-width: 900px) {
+  .panel {
+    position: fixed;
+    top: calc(var(--nav-h) + 2px);
+    left: var(--gutter);
+    right: var(--gutter);
+    width: auto;
+    translate: none;
+    max-height: calc(100dvh - var(--nav-h) - 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field,
+  .panel,
+  .chip {
+    transition: none;
+    animation: none;
+  }
+}
+
+.groupHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 6px;
+}
+
+.clearAll {
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--link);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.recents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recent {
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+}
+
+@media (hover: hover) {
+  .recent:hover {
+    background: var(--lg-highlight);
+  }
+}
+
+.recentTerm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.recentTerm svg,
+.remove svg {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.recentTerm svg {
+  color: var(--lg-muted);
+}
+
+.remove {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--lg-muted);
+  cursor: pointer;
+}
+
+.remove:hover {
+  color: var(--text);
+}

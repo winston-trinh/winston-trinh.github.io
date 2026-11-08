@@ -7,5 +7,4 @@ scripts/debug
 coverage
 
 # Local source material (personal info, full-res originals); not needed to build the site
-references/
 .claude/
