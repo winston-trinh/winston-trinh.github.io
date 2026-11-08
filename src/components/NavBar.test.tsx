@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { act, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { setMedia } from '../test/setup'
 import { DOCK_QUERY, NavBar } from './NavBar'
@@ -37,5 +37,67 @@ describe('NavBar', () => {
     expect(screen.queryByRole('link', { name: 'Winston Trinh' })).toBeNull()
     expect(screen.getByRole('switch', { name: 'Dark mode' })).toBeInTheDocument()
     expect(screen.getByRole('combobox', { name: /Search/ })).toBeInTheDocument()
+  })
+})
+
+describe('NavBar section highlight', () => {
+  /** Put each section's top at a viewport offset, as a real layout would. */
+  function place(tops: Record<string, number>) {
+    for (const [id, top] of Object.entries(tops)) {
+      let el = document.getElementById(id)
+      if (!el) {
+        el = document.createElement('section')
+        el.id = id
+        document.body.appendChild(el)
+      }
+      el.getBoundingClientRect = () => ({ top }) as DOMRect
+    }
+  }
+  const selected = () =>
+    within(screen.getByLabelText('Sections'))
+      .getAllByRole('link')
+      .filter((t) => t.hasAttribute('aria-current'))
+      .map((t) => t.textContent)
+
+  beforeEach(() => {
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
+      cb(0)
+      return 1
+    })
+    Object.defineProperty(window, 'innerHeight', { configurable: true, value: 800 })
+  })
+
+  afterEach(() => {
+    document.body.innerHTML = ''
+    vi.restoreAllMocks()
+  })
+
+  it('keeps a clicked tab selected while the page scrolls past other sections', async () => {
+    place({ about: -900, experience: -300, education: 900, projects: 1200, contact: 1500 })
+    render(<NavBar />)
+    expect(selected()).toEqual(['Experience'])
+
+    await userEvent.click(screen.getByRole('link', { name: 'Contact' }))
+    expect(selected()).toEqual(['Contact'])
+
+    // Smooth scrolling passes through Education and Projects on the way down.
+    place({ about: -1500, experience: -1000, education: 100, projects: 1200, contact: 1500 })
+    act(() => window.dispatchEvent(new Event('scroll')))
+    expect(selected()).toEqual(['Contact'])
+
+    // Once the page arrives, the spy takes over again.
+    place({ about: -2000, experience: -1500, education: -1000, projects: -500, contact: 100 })
+    act(() => window.dispatchEvent(new Event('scroll')))
+    expect(selected()).toEqual(['Contact'])
+  })
+
+  it('hands the highlight back when the reader scrolls by hand', async () => {
+    place({ about: -900, experience: 900, education: 1000, projects: 1200, contact: 1500 })
+    render(<NavBar />)
+    await userEvent.click(screen.getByRole('link', { name: 'Contact' }))
+    expect(selected()).toEqual(['Contact'])
+
+    act(() => window.dispatchEvent(new Event('wheel')))
+    expect(selected()).toEqual(['About'])
   })
 })

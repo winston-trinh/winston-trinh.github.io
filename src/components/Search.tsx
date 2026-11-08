@@ -1,5 +1,6 @@
 import { SearchField } from 'glisse'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { scrollToSection } from '../lib/scrollToSection'
 import { buildIndex, search, type SearchEntry } from '../lib/searchIndex'
 import { complete, correct, vocabulary } from '../lib/suggest'
 import styles from './Search.module.css'
@@ -134,7 +135,7 @@ export function Search({ home = '' }: { home?: string }) {
     requestAnimationFrame(() => {
       const el = document.getElementById(id)
       if (!el) return
-      el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })
+      scrollToSection(el)
       history.replaceState(null, '', `#${id}`)
     })
   }

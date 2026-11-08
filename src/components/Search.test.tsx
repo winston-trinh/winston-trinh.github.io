@@ -43,8 +43,7 @@ describe('Search', () => {
   it('closes and scrolls to the section when a result is chosen', async () => {
     const section = document.createElement('section')
     section.id = 'education'
-    const scrollIntoView = vi.fn()
-    section.scrollIntoView = scrollIntoView
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
     document.body.append(section)
     vi.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
       cb(0)
@@ -56,10 +55,11 @@ describe('Search', () => {
       await userEvent.type(box, 'education')
       await userEvent.click(screen.getByRole('option', { name: /University of Southern California/ }))
       expect(box).toHaveAttribute('aria-expanded', 'false')
-      expect(scrollIntoView).toHaveBeenCalled()
+      expect(scrollTo).toHaveBeenLastCalledWith({ top: 0, behavior: 'smooth' })
       expect(window.location.hash).toBe('#education')
     } finally {
       section.remove()
+      scrollTo.mockRestore()
       history.replaceState(null, '', '/')
     }
   })

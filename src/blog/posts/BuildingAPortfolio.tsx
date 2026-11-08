@@ -215,6 +215,15 @@ export function BuildingAPortfolio() {
         <Mermaid chart={SLIDER} label="Diagram: before, every nudge of the slider redrew the top of the page and rebuilt the glass lens, so some buttons faded in late. After, every nudge changes one setting and every glass surface updates in the same frame." />
       </Figure>
 
+      <h3>The tab that froze</h3>
+      <p>
+        On my phone, tapping Contact in the tab bar froze the page for a moment, and then it landed all at once. The
+        browser was gliding down the entire page, drawing every section, photo and pane of glass on the way, faster
+        than a phone can paint. So I timed it in Safari’s engine, set up like an iPhone. The page was moving more
+        than 1,000 pixels a frame. Now a long jump cuts to just short of the section and glides only the last stretch, less than one
+        screen, so the trip feels smooth and the highlight in the tab bar stays on the tab you picked.
+      </p>
+
       <h3>A bouncer at the door</h3>
       <p>
         All of this only helps if it runs every time, including when I forget. So every update has to pass all {N} tests

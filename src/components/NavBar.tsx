@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Glass, Switch, TabBar } from 'glisse'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { useMediaQuery } from '../hooks/useMediaQuery'
@@ -19,6 +20,12 @@ export const DOCK_QUERY = '(max-width: 900px)'
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.id)
 
+/** The section id a "#section" hash names, or null if it names none of ours. */
+function sectionFromHash(hash: string): string | null {
+  const id = decodeURIComponent(hash.replace(/^#/, ''))
+  return SECTION_IDS.includes(id) ? id : null
+}
+
 /**
  * Floating Liquid Glass chrome: section tabs, search and the dark-mode switch.
  * `home` prefixes the links, e.g. '/' on the blog so they jump back to homepage sections.
@@ -26,8 +33,32 @@ const SECTION_IDS = NAV_LINKS.map((l) => l.id)
 export function NavBar({ home = '' }: { home?: string }) {
   const { theme, setPreference } = useTheme()
   const docked = useMediaQuery(DOCK_QUERY)
-  const active = useActiveSection(home ? [] : SECTION_IDS) || null
+  const spied = useActiveSection(home ? [] : SECTION_IDS) || null
+  // A tab the reader chose (or a #section in the URL) stays selected while the
+  // page scrolls there. Otherwise the scroll-spy would slide the highlight
+  // through every section in between.
+  const [chosen, setChosen] = useState<string | null>(() =>
+    home ? null : sectionFromHash(window.location.hash),
+  )
+  const active = chosen ?? spied
   const dark = theme === 'dark'
+
+  useEffect(() => {
+    if (chosen && spied === chosen) setChosen(null)
+  }, [chosen, spied])
+
+  useEffect(() => {
+    if (!chosen) return
+    // Give the highlight back if the reader scrolls by hand, or the jump never lands.
+    const release = () => setChosen(null)
+    const timer = window.setTimeout(release, 4000)
+    const events = ['wheel', 'touchstart', 'keydown'] as const
+    for (const e of events) window.addEventListener(e, release, { passive: true })
+    return () => {
+      window.clearTimeout(timer)
+      for (const e of events) window.removeEventListener(e, release)
+    }
+  }, [chosen])
 
   const tabs = (
     <TabBar
@@ -40,6 +71,11 @@ export function NavBar({ home = '' }: { home?: string }) {
         ...(docked ? { icon: l.icon } : {}),
       }))}
       value={active}
+      onClick={(e) => {
+        const link = (e.target as Element).closest('a')
+        const id = link ? sectionFromHash(link.hash) : null
+        if (id && !home) setChosen(id)
+      }}
     />
   )
 
