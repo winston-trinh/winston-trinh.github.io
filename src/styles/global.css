@@ -121,9 +121,11 @@ a {
   text-decoration: none;
 }
 
-/* Touch screens keep a link "hovered" after a tap, which left tab bar links underlined. */
+/* Touch screens keep a link "hovered" after a tap, so only mice underline. Tab bar
+   links never do: the sliding selection already marks them. :where() keeps this
+   rule weak, so links that grow instead of underlining can still opt out. */
 @media (hover: hover) {
-  a:hover {
+  a:where(:not(.lg-tab)):hover {
     text-decoration: underline;
   }
 }
@@ -171,23 +173,6 @@ p {
   font-weight: 700;
   letter-spacing: -0.028em;
   margin-bottom: clamp(32px, 5vw, 56px);
-}
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 14px;
-  border-radius: 980px;
-  background: var(--chip);
-  color: var(--text);
-  font-size: 14px;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-}
-
-.chip-sm {
-  padding: 3px 10px;
-  font-size: 12px;
 }
 
 /* The translucency slider changes every glass surface each frame; a background

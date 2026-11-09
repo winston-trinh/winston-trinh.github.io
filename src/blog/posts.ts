@@ -11,9 +11,9 @@ export const POSTS: PostMeta[] = [
   {
     slug: 'building-a-portfolio-that-looks-back',
     title: 'Building a portfolio that looks back at you',
-    dek: '121 selfies, a coat of Liquid Glass, a few dozen tiny robot testers, and a few lessons I learned the fun way.',
+    dek: '121 selfies, a coat of Liquid Glass, over a hundred tiny robot testers, and a few lessons I learned the fun way.',
     date: 'November 7, 2026',
-    readTime: '7 min read',
+    readTime: '8 min read',
     image: '/blog/gaze-grid.webp',
   },
 ]
@@ -21,4 +21,4 @@ export const POSTS: PostMeta[] = [
 export const postUrl = (slug: string) => `/blog/${slug}/`
 
 /** Number of automated tests the post quotes; keep in sync with `npm test`. */
-export const TEST_COUNT = 87
+export const TEST_COUNT = 95

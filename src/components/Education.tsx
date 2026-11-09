@@ -5,7 +5,7 @@ import styles from './Education.module.css'
 
 export function Education() {
   return (
-    <Section id="education" eyebrow="Education" title="Where I studied." alt>
+    <Section id="education" eyebrow="Education" title="Where I studied.">
       {DATA.education.map((e) => (
         <Reveal key={e.school}>
           <article className={`card ${styles.card}`}>

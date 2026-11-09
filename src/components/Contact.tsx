@@ -14,7 +14,7 @@ export function Contact() {
             Say hello!
           </h2>
           <p className={styles.lede}>
-            Always happy to talk shop, trade ideas, or hear what you’re building.
+            I’m always interested in collaboration opportunities and meeting others.
           </p>
           <ul className={styles.links}>
             {DATA.social.map((s) => {

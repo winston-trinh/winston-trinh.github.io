@@ -2,9 +2,10 @@ node_modules
 dist
 *.tsbuildinfo
 .DS_Store
-scripts/debug
 .vite
 coverage
+test-results
+playwright-report
 
 # Local source material (personal info, full-res originals); not needed to build the site
 .claude/

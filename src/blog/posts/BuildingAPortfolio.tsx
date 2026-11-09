@@ -154,10 +154,13 @@ export function BuildingAPortfolio() {
         />
       </Figure>
 
-      <h3>Projects in folders</h3>
+      <h3>Projects and jobs in folders</h3>
       <p>
-        My projects live in folders, one per month, like the Downloads stack on a Mac. Each folder’s frosted front hints
-        at the screenshots inside. Point at one and they rise out while the folder shows the details.
+        My projects live in folders, one per month, like the Downloads stack on a Mac, and my jobs live in folders too,
+        one per company. Each folder’s frosted front hints at the pages inside. Point at one and they rise out while
+        the folder shows the details. AT&amp;T’s folder holds both of my roles there, newest in front. Click the one
+        behind it and it sweeps around the stack to the front in one smooth arc. Click anywhere else and the folder
+        tidies itself back into its original order.
       </p>
       <Figure n={6} caption="October 2023 holds two projects. Their screenshots rise out, and the front shows the one you picked.">
         <img
@@ -169,6 +172,14 @@ export function BuildingAPortfolio() {
           loading="lazy"
         />
       </Figure>
+
+      <h3>Skills you can push around</h3>
+      <p>
+        My skills used to sit in a tidy gray box. Now they’re scattered loose across the page, a little crooked, like
+        stickers on a laptop. Point at them and they straighten up, and the ones near your cursor grow while their
+        neighbors lean out of the way, the way icons do in the Mac’s Dock. You can also pick one up and drag it
+        somewhere else. The others slide aside to make room before you even let go.
+      </p>
 
       <h2>Quality: the part nobody sees</h2>
       <p>This is the part I’m proudest of, and no visitor will ever notice it. That’s kind of the point.</p>
@@ -187,6 +198,21 @@ export function BuildingAPortfolio() {
         of teaching them the new one, I taught them to look it up where the website does, so they’ll keep up on their
         own. I also sent a robot through a real copy of Chrome at laptop and phone sizes. It caught search results
         sliding 45 pixels off a phone screen and blog links landing on the wrong spot. Both are fixed.
+      </p>
+      <p>
+        That robot grew into 15 checks that drive real browsers: Chrome and Safari on a laptop, and Safari’s engine
+        pretending to be an iPhone. They tap tabs, open folders, shuffle pages and drag skills. In Safari, they caught
+        my skills sliding out from under the cursor the moment you pointed at one. So I redesigned it: now the skill
+        you point at stays put and its neighbors move instead.
+      </p>
+
+      <h3>The test that passed for the wrong reason</h3>
+      <p>
+        One check made sure every folder’s details fit on its front. It passed, run after run. Then I added a single
+        line of text and it failed, and I went looking for why it had ever passed. Pointing at the back page made the
+        browser scroll, the folder slid out from under the mouse and closed, and the check had been measuring a closed
+        folder all along. Now it opens each folder with a click and refuses to measure until the folder is open. A
+        green check only means something if you know what it looked at.
       </p>
 
       <h3>Measure twice, generate once</h3>
@@ -227,7 +253,8 @@ export function BuildingAPortfolio() {
       <h3>A bouncer at the door</h3>
       <p>
         All of this only helps if it runs every time, including when I forget. So every update has to pass all {N} tests
-        before it reaches the live site. One failure, and the bouncer turns it away.
+        before it reaches the live site. One failure, and the bouncer turns it away. The browser checks take longer, so
+        I run those on my own computer before I publish.
       </p>
       <Figure n={8} caption="The bouncer. Updates go live automatically, but only if every test passes.">
         <Mermaid chart={PIPELINE} label={`Diagram: a published change runs all ${N} tests. If all pass, the site is built and goes live. If any fail, nothing changes.`} />
@@ -238,7 +265,7 @@ export function BuildingAPortfolio() {
           <span className={styles.label}>tests, run on every change in seconds</span>
         </div>
         <div className={styles.stat}>
-          <span className={styles.num}>84 KB</span>
+          <span className={styles.num}>87 KB</span>
           <span className={styles.label}>of compressed code runs the homepage, glass included</span>
         </div>
         <div className={styles.stat}>
@@ -263,14 +290,16 @@ export function BuildingAPortfolio() {
 
       <h3>Keep every fact in one place</h3>
       <p>
-        If a fact lives in two places, one will eventually be wrong. When I grouped my two AT&amp;T roles under one
-        heading, I changed one file, and the page and its search both updated.
+        If a fact lives in two places, one will eventually be wrong. When I grouped my two AT&amp;T roles into one
+        folder, and again when I added my promotion, I changed one file, and the page and its search both updated.
       </p>
 
       <h3>Robots check, humans notice</h3>
       <p>
-        No test said the slider felt sticky. A person had to drag it and frown. So I check the real page on a real
-        screen, and when something feels off, I measure before I guess at a fix.
+        No test said the slider felt sticky, or that the folder shuffle felt like two moves instead of one. A person had
+        to try it and frown. So I check the real page on a real screen, and when something feels off, I measure before
+        I guess at a fix. Once a person names the feeling, a robot can guard it: a check now follows the shuffling page
+        frame by frame and fails if it ever stops partway.
       </p>
 
       <h3>Small details are most of the work</h3>

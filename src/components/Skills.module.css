@@ -1,0 +1,77 @@
+/* No box: the pills float loose on the section, tilted as if tossed down. */
+.cloud {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 10px;
+  margin: 0;
+  padding: 14px 0;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pill {
+  --s: 1;
+  position: relative;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow:
+    0 0 0 0.5px var(--hairline),
+    0 6px 16px -10px rgb(0 0 0 / 0.35);
+  transform: translate(var(--dx), var(--dy)) rotate(var(--r)) scale(var(--s));
+  transition:
+    transform 520ms var(--spring),
+    translate 460ms var(--spring),
+    color 200ms var(--ease-out),
+    box-shadow 250ms var(--ease-out);
+  transition-delay: var(--delay), 0ms, 0ms, 0ms;
+}
+
+/* Pointed at: every pill straightens, and those near the pointer part around it. */
+.cloud[data-spread] .pill {
+  transform: translate(var(--ox, 0px), var(--oy, 0px)) scale(var(--s));
+  transition-delay: 0ms;
+  transition-duration: 320ms, 460ms, 200ms, 250ms;
+}
+
+/* Picked up: it follows the pointer exactly, lifted above the rest. */
+.cloud .pill[data-dragging] {
+  --s: 1.12;
+  z-index: 2;
+  cursor: grabbing;
+  color: var(--link);
+  box-shadow:
+    0 0 0 0.5px color-mix(in srgb, var(--link) 40%, transparent),
+    0 16px 30px -12px rgb(0 0 0 / 0.4);
+  transition:
+    transform 200ms var(--ease-out),
+    color 200ms var(--ease-out),
+    box-shadow 200ms var(--ease-out);
+}
+
+.pill[data-near] {
+  z-index: 1;
+  color: var(--link);
+  box-shadow:
+    0 0 0 0.5px color-mix(in srgb, var(--link) 40%, transparent),
+    0 10px 22px -10px color-mix(in srgb, var(--link) 55%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill,
+  .cloud[data-spread] .pill {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--r));
+    transition: color 200ms linear, translate 1ms;
+  }
+}

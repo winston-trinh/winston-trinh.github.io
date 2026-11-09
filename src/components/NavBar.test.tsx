@@ -18,7 +18,7 @@ describe('NavBar', () => {
   it('marks no section as current at the top of the page', () => {
     render(<NavBar />)
     const tabs = within(screen.getByLabelText('Sections')).getAllByRole('link')
-    expect(tabs.map((t) => t.textContent)).toEqual(['About', 'Experience', 'Education', 'Projects', 'Contact'])
+    expect(tabs.map((t) => t.textContent)).toEqual(['About', 'Experience', 'Projects', 'Education', 'Contact'])
     for (const tab of tabs) expect(tab).not.toHaveAttribute('aria-current')
   })
 
@@ -70,6 +70,7 @@ describe('NavBar section highlight', () => {
   afterEach(() => {
     document.body.innerHTML = ''
     vi.restoreAllMocks()
+    history.replaceState(null, '', '/')
   })
 
   it('keeps a clicked tab selected while the page scrolls past other sections', async () => {
@@ -89,6 +90,16 @@ describe('NavBar section highlight', () => {
     place({ about: -2000, experience: -1500, education: -1000, projects: -500, contact: 100 })
     act(() => window.dispatchEvent(new Event('scroll')))
     expect(selected()).toEqual(['Contact'])
+  })
+
+  it('marks no section while search is open', async () => {
+    place({ about: -900, experience: -300, education: 900, projects: 1200, contact: 1500 })
+    render(<NavBar />)
+    expect(selected()).toEqual(['Experience'])
+    await userEvent.click(screen.getByRole('combobox', { name: /Search/ }))
+    expect(selected()).toEqual([])
+    await userEvent.keyboard('{Escape}')
+    expect(selected()).toEqual(['Experience'])
   })
 
   it('hands the highlight back when the reader scrolls by hand', async () => {

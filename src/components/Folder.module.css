@@ -1,4 +1,4 @@
-/* Rows leave room above each folder for the screenshots that rise out of it. */
+/* Shared by Projects and Experience. Rows leave room above each folder for the sheets that rise out of it. */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -16,6 +16,11 @@
   --folder-ink: var(--text);
   --folder-ink-2: var(--text-2);
   --folder-chip: rgb(0 0 0 / 0.06);
+  --sheet-frame: #fff;
+  --sheet-paper: #fff;
+  --sheet-ink: #1d1d1f;
+  --sheet-ink-2: #6e6e73;
+  --sheet-line: #e8e8ed;
   --radius-folder: 30px;
   position: relative;
 }
@@ -27,6 +32,11 @@
   --folder-edge: rgb(255 255 255 / 0.16);
   --folder-shadow: rgb(0 0 0 / 0.5);
   --folder-chip: rgb(255 255 255 / 0.1);
+  --sheet-frame: #3a3a40;
+  --sheet-paper: #2c2c31;
+  --sheet-ink: #f5f5f7;
+  --sheet-ink-2: #a1a1a6;
+  --sheet-line: rgb(255 255 255 / 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,12 +47,17 @@
     --folder-edge: rgb(255 255 255 / 0.16);
     --folder-shadow: rgb(0 0 0 / 0.5);
     --folder-chip: rgb(255 255 255 / 0.1);
+    --sheet-frame: #3a3a40;
+    --sheet-paper: #2c2c31;
+    --sheet-ink: #f5f5f7;
+    --sheet-ink-2: #a1a1a6;
+    --sheet-line: rgb(255 255 255 / 0.1);
   }
 }
 
 .stage {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--folder-aspect, 4 / 3);
   perspective: 1000px;
 }
 
@@ -83,10 +98,11 @@
   box-shadow: inset 0 1px 0 var(--folder-edge);
 }
 
-/* Screenshots: tucked into the folder, rising straight up (drifting a little right) when it opens. */
+/* Sheets (screenshots, documents): tucked into the folder, rising straight up (drifting a little right) when it opens. */
 .pic {
   position: absolute;
-  z-index: 2;
+  /* --i is the sheet's place in the stack (0 = front); the front sheet paints on top. */
+  z-index: calc(12 - var(--i));
   left: 12%;
   top: 24%;
   width: 56%;
@@ -94,7 +110,7 @@
   padding: 5px;
   border: 0;
   border-radius: 18px;
-  background: #fff;
+  background: var(--sheet-frame);
   box-shadow: 0 10px 26px -10px rgb(0 0 0 / 0.4);
   transform: translate(calc(var(--i) * 6%), calc(var(--i) * -5%)) rotate(calc(var(--i) * 3deg - 1.5deg));
   transition:
@@ -113,7 +129,8 @@ div.pic {
   pointer-events: none;
 }
 
-.pic img {
+/* A screenshot fills its sheet. */
+.pic > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -146,7 +163,7 @@ div.pic {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 3;
+  z-index: 20;
   height: 62%;
   display: flex;
   flex-direction: column;
@@ -172,7 +189,7 @@ div.pic {
   transition: opacity 200ms var(--ease-out);
 }
 
-.date {
+.name {
   margin: 0;
   font-size: 22px;
   font-weight: 600;
@@ -213,7 +230,7 @@ div.pic {
   }
 }
 
-.projectTitle {
+.title {
   margin: 0;
   font-size: 18px;
   line-height: 1.2;
@@ -221,7 +238,7 @@ div.pic {
   letter-spacing: -0.02em;
 }
 
-.projectTitle a {
+.title a {
   color: inherit;
   pointer-events: auto;
 }
@@ -285,7 +302,7 @@ div.pic {
 }
 
 .folder[data-open] .front {
-  height: 74%;
+  height: var(--front-open, 74%);
   transform: rotateX(-6deg);
 }
 
@@ -318,7 +335,7 @@ div.pic {
   }
 
   .folder:is(:hover, :focus-within) .front {
-    height: 74%;
+    height: var(--front-open, 74%);
     transform: rotateX(-6deg);
   }
 
@@ -336,6 +353,13 @@ div.pic {
   }
 }
 
+/* Two per row, staggered: the right folder sits a little lower than the left. */
+@media (min-width: 761px) {
+  .grid > :nth-child(even) {
+    margin-top: 88px;
+  }
+}
+
 @media (max-width: 760px) {
   .grid {
     grid-template-columns: 1fr;
@@ -344,7 +368,7 @@ div.pic {
   }
 
   .stage {
-    aspect-ratio: 6 / 5;
+    aspect-ratio: var(--folder-aspect-narrow, 6 / 5);
   }
 }
 

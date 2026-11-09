@@ -24,7 +24,7 @@ export interface SearchGroup {
 }
 
 /** Section order on the page; groups come back in this order unless a query names one. */
-export const SECTIONS: SearchSection[] = ['About', 'Skills', 'Experience', 'Education', 'Projects', 'Contact', 'Blog']
+export const SECTIONS: SearchSection[] = ['About', 'Skills', 'Experience', 'Projects', 'Education', 'Contact', 'Blog']
 
 const SECTION_WORDS: Record<SearchSection, string> = {
   About: 'about bio me who hometown location',
@@ -73,17 +73,6 @@ export function buildIndex(home = ''): SearchEntry[] {
     }
   }
 
-  for (const school of DATA.education) {
-    entries.push({
-      section: 'Education',
-      title: school.school,
-      subtitle: 'Education',
-      details: [`Degree: ${school.degree}, ${school.end}`, school.description],
-      href: anchor('education'),
-      keywords: '',
-    })
-  }
-
   for (const project of DATA.projects) {
     entries.push({
       section: 'Projects',
@@ -91,6 +80,17 @@ export function buildIndex(home = ''): SearchEntry[] {
       subtitle: project.dates,
       details: [project.description, project.technologies.join(' · ')],
       href: anchor('projects'),
+      keywords: '',
+    })
+  }
+
+  for (const school of DATA.education) {
+    entries.push({
+      section: 'Education',
+      title: school.school,
+      subtitle: 'Education',
+      details: [`Degree: ${school.degree}, ${school.end}`, school.description],
+      href: anchor('education'),
       keywords: '',
     })
   }

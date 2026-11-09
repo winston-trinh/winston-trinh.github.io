@@ -3,6 +3,7 @@ import { renderInlineMarkdown } from '../lib/inlineMarkdown'
 import { Icons } from './Icons'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
+import { Skills } from './Skills'
 import styles from './About.module.css'
 
 export function About() {
@@ -20,16 +21,9 @@ export function About() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className={`card ${styles.skills}`}>
+          <div className={styles.skills}>
             <h3>Skills</h3>
-            {/* The empty touch handler lets iOS Safari apply :active on tap. */}
-            <ul onTouchStart={() => {}}>
-              {DATA.skills.map((s) => (
-                <li key={s} className={`chip ${styles.skill}`}>
-                  {s}
-                </li>
-              ))}
-            </ul>
+            <Skills skills={DATA.skills} />
           </div>
         </Reveal>
       </div>

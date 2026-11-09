@@ -49,8 +49,11 @@ function measure(input: HTMLInputElement, text: string): number {
   return ctx.measureText(text).width + hint
 }
 
-/** The floating Liquid Glass search: focusing it blurs the page behind instant results. */
-export function Search({ home = '' }: { home?: string }) {
+/**
+ * The floating Liquid Glass search: focusing it blurs the page behind instant results.
+ * `onOpenChange` hears when it opens and closes, so the nav can stop marking a section.
+ */
+export function Search({ home = '', onOpenChange }: { home?: string; onOpenChange?: (open: boolean) => void }) {
   const index = useMemo(() => buildIndex(home), [home])
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
@@ -84,6 +87,10 @@ export function Search({ home = '' }: { home?: string }) {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
+
+  const reportOpen = useRef(onOpenChange)
+  reportOpen.current = onOpenChange
+  useEffect(() => reportOpen.current?.(open), [open])
 
   // Hold the page still behind the results.
   useEffect(() => {

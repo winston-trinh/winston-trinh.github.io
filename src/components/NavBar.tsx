@@ -7,11 +7,11 @@ import { Icons } from './Icons'
 import { Search } from './Search'
 import styles from './NavBar.module.css'
 
-export const NAV_LINKS = [
+const NAV_LINKS = [
   { id: 'about', label: 'About', icon: <Icons.person /> },
   { id: 'experience', label: 'Experience', icon: <Icons.briefcase /> },
-  { id: 'education', label: 'Education', icon: <Icons.cap /> },
   { id: 'projects', label: 'Projects', icon: <Icons.folder /> },
+  { id: 'education', label: 'Education', icon: <Icons.cap /> },
   { id: 'contact', label: 'Contact', icon: <Icons.chat /> },
 ]
 
@@ -40,7 +40,9 @@ export function NavBar({ home = '' }: { home?: string }) {
   const [chosen, setChosen] = useState<string | null>(() =>
     home ? null : sectionFromHash(window.location.hash),
   )
-  const active = chosen ?? spied
+  // While search is open the page is blurred behind it, so no section is "current".
+  const [searching, setSearching] = useState(false)
+  const active = searching ? null : (chosen ?? spied)
   const dark = theme === 'dark'
 
   useEffect(() => {
@@ -88,7 +90,7 @@ export function NavBar({ home = '' }: { home?: string }) {
           </a>
         )}
         {!docked && tabs}
-        <Search home={home} />
+        <Search home={home} onOpenChange={setSearching} />
         <Glass className={styles.theme}>
           <span className={styles.themeIcon} data-mode={dark ? 'dark' : 'light'} aria-hidden="true">
             {dark ? <Icons.moon width={18} height={18} /> : <Icons.sun width={18} height={18} />}

@@ -91,6 +91,7 @@ export const DATA = {
           end: 'September 2026',
           bullets: [
             'Technology Development Program - Focus on improving AT&T’s 5G and fiber infrastructure using scripting, automation and data analysis.',
+            'Promoted from TDP Network Engineer I to TDP Network Engineer II in August 2026.',
             'RAN Architecture and Planning',
             'Systems Support, Quality Assurance and Testing - Recipient of Connection Award',
           ],

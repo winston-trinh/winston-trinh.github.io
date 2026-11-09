@@ -47,68 +47,16 @@
   }
 }
 
-.skills {
-  padding: 28px;
-}
-
 .skills h3 {
   font-size: 21px;
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-
-.skills ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.skill {
-  cursor: default;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  transition:
-    transform 450ms var(--spring),
-    background-color 250ms var(--ease-out),
-    color 250ms var(--ease-out),
-    box-shadow 250ms var(--ease-out);
-}
-
-/* Mouse: lift on hover. Touch: same response while the finger is down. */
-@media (hover: hover) {
-  .skill:hover {
-    transform: translateY(-2px) scale(1.06);
-    background: color-mix(in srgb, var(--link) 14%, var(--surface));
-    color: var(--link);
-    box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--link) 60%, transparent);
-  }
-}
-
-.skill:active {
-  transform: scale(1.06);
-  background: color-mix(in srgb, var(--link) 14%, var(--surface));
-  color: var(--link);
-  transition-duration: 120ms;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skill:hover,
-  .skill:active {
-    transform: none;
-  }
+  margin-bottom: 8px;
+  text-align: center;
 }
 
 @media (max-width: 734px) {
   .grid {
     grid-template-columns: 1fr;
-  }
-
-  .skills {
-    padding: 22px;
   }
 }

@@ -13,8 +13,8 @@ it('renders every section of the portfolio', () => {
   expect(screen.getAllByRole('article')).toHaveLength(DATA.experience.length + groupProjects(DATA.projects).length + DATA.education.length)
 })
 
-it('orders sections with education right after experience', () => {
+it('orders sections with education right after projects', () => {
   const { container } = render(<App />)
   const ids = [...container.querySelectorAll('main > section')].map((s) => s.id)
-  expect(ids).toEqual(['top', 'about', 'experience', 'education', 'projects', 'contact'])
+  expect(ids).toEqual(['top', 'about', 'experience', 'projects', 'education', 'contact'])
 })
